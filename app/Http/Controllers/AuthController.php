@@ -19,7 +19,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register', 'registerMitraIntelud', 'uploadDocumentMitraIntelud', 'deleteMitraIntelud']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
         // $this->middleware('signature', ['except' => ['register']]);
     }
 
@@ -71,8 +71,7 @@ class AuthController extends Controller
         $customClaims = [
             'id' => $user->id,
             'name' => $user->name,
-            'role' => $this->checkRole($user->id),
-            // "documents_mitra_intelud" => $this->checkDocumentMitraIntelud($user->id),
+            'role' => $user->level,
         ];
 
         // Create the token with claims
@@ -80,19 +79,6 @@ class AuthController extends Controller
 
         // Return the response with the token
         return $this->respondWithToken($tokenWithClaims, $user);
-
-        // $headers = $request->headers->all();
-        // $now = now();
-        // $YYYY = $now->format('Y');
-        // $MM = $now->format('m');
-        // $DD = $now->format('d');
-
-        // return response()->json([
-        //     'header' => $headers,
-        //     'tahun' => $YYYY,
-        //     'bulan' => $MM,
-        //     'tanggal' => $DD
-        // ]);
     }
 
     /**
@@ -140,7 +126,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'sub' => $user->id,
             'name' => $user->name,
-            'role' => $this->checkRole($user->id),
+            'role' => $user->level,
             'status' => $user->status,
             'iat' => now()->timestamp,
             'token_type' => 'bearer',

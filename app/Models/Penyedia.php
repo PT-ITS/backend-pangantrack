@@ -10,7 +10,7 @@ class Penyedia extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'nama',
         'wilayah',
         'id_pj',
     ];

@@ -25,7 +25,7 @@ class PenyediaController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam mengambil data penyedia',
+                'data' => $th->getMessage(),
             ]);
         }
     }
@@ -34,7 +34,7 @@ class PenyediaController extends Controller
     {
         try {
             $validateData = $request->validate([
-                'name' => 'required',
+                'nama' => 'required',
                 'wilayah' => 'required',
                 'id_pj' => 'required',
             ]);
@@ -46,21 +46,20 @@ class PenyediaController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam menambahkan data penyedia',
+                'data' => $th->getMessage(),
             ]);
         }
     }
 
-    public function updatePenyedia(Request $request)
+    public function updatePenyedia(Request $request, $id)
     {
         try {
             $validateData = $request->validate([
-                'id' => 'required',
-                'name' => 'required',
+                'nama' => 'required',
                 'wilayah' => 'required',
                 'id_pj' => 'required',
             ]);
-            $result = $this->penyediaService->updatePenyedia($validateData);
+            $result = $this->penyediaService->updatePenyedia($validateData, $id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],
@@ -68,7 +67,7 @@ class PenyediaController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam mengupdate data penyedia',
+                'data' => $th->getMessage(),
             ]);
         }
     }
@@ -84,8 +83,8 @@ class PenyediaController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam menghapus data penyedia',
+                'data' => $th->getMessage(),
             ]);
         }
-    }   
+    }
 }

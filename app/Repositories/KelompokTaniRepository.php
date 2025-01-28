@@ -12,7 +12,7 @@ class KelompokTaniRepository
     }
 
     public function listKelompokTani()
-    {   
+    {
         try {
             $dataKelompokTani = KelompokTani::all();
             return [
@@ -60,4 +60,20 @@ class KelompokTaniRepository
         }
     }
 
+    public function deleteKelompokTani($id)
+    {
+        try {
+            $dataKelompokTani = KelompokTani::find($id);
+            $dataKelompokTani->delete();
+            return [
+                'id' => '1',
+                'data' => 'berhasil menghapus data kelompok tani'
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'id' => '0',
+                'data' => 'terjadi kesalahan dalam menghapus data kelompok tani'
+            ];
+        }
+    }
 }

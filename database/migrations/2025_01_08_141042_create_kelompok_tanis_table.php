@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('kelompok_tanis', function (Blueprint $table) {
             $table->id();
-            $table->string('name_kelompok');
+            $table->string('nama_kelompok');
             $table->enum('status_kelompok', [
                 '0', // tidak aktif
                 '1' // aktif

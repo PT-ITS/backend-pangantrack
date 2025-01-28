@@ -10,7 +10,7 @@ class KelompokTani extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name_kelompok',
+        'nama_kelompok',
         'status_kelompok',
         'alamat_kelompok',
         'ketua_kelompok',

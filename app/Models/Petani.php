@@ -10,7 +10,7 @@ class Petani extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name_petani',
+        'nama_petani',
         'alamat_petani',
         'hp_petani',
         'luas_lahan',

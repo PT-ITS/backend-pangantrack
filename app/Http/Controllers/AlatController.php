@@ -25,7 +25,7 @@ class AlatController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam mengambil data alat',
+                'data' => $th->getMessage(),
             ]);
         }
     }
@@ -35,7 +35,7 @@ class AlatController extends Controller
         try {
             $validateData = $request->validate([
                 'jenis_alat' => 'required',
-                'name_alat' => 'required',
+                'nama_alat' => 'required',
                 'deskripsi_alat' => 'required',
                 'foto_alat' => 'required',
                 'status' => 'required',
@@ -49,24 +49,23 @@ class AlatController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam menambahkan data alat',
+                'data' => $th->getMessage(),
             ]);
         }
     }
 
-    public function updateAlat(Request $request)
+    public function updateAlat(Request $request, $id)
     {
         try {
             $validateData = $request->validate([
-                'id' => 'required',
                 'jenis_alat' => 'required',
-                'name_alat' => 'required',
+                'nama_alat' => 'required',
                 'deskripsi_alat' => 'required',
-                'foto_alat' => 'required',
+                'foto_alat' => 'nullable',
                 'status' => 'required',
                 'penyedia_id' => 'required',
             ]);
-            $result = $this->alatService->updateAlat($validateData);
+            $result = $this->alatService->updateAlat($validateData, $id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],
@@ -74,7 +73,7 @@ class AlatController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam mengubah data alat',
+                'data' => $th->getMessage(),
             ]);
         }
     }
@@ -90,7 +89,7 @@ class AlatController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam menghapus data alat',
+                'data' => $th->getMessage(),
             ]);
         }
     }

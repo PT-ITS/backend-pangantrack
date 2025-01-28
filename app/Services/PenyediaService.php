@@ -18,14 +18,14 @@ class PenyediaService
         return $this->penyediaRepository->listPenyedia();
     }
 
-    public function createPenyedia($data)
+    public function createPenyedia($requestData)
     {
-        return $this->penyediaRepository->createPenyedia($data);
+        return $this->penyediaRepository->createPenyedia($requestData);
     }
 
-    public function updatePenyedia($id, $data)
+    public function updatePenyedia($requestData, $id)
     {
-        return $this->penyediaRepository->updatePenyedia($id, $data);
+        return $this->penyediaRepository->updatePenyedia($requestData, $id);
     }
 
     public function deletePenyedia($id)

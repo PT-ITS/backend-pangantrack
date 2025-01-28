@@ -55,14 +55,13 @@ class SewaAlatController extends Controller
         }
     }
 
-    public function aksiPengajuanSewaAlat($id)
+    public function aksiPengajuanSewaAlat(Request $request, $id)
     {
         try {
             $validateData = $request->validate([
-                'id' => 'required',
                 'status' => 'required',
             ]);
-            $result = $this->sewaAlatService->aksiPengajuanSewaAlat($validateData);
+            $result = $this->sewaAlatService->aksiPengajuanSewaAlat($validateData, $id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],
@@ -100,7 +99,7 @@ class SewaAlatController extends Controller
             ]);
         }
     }
-    
+
     public function deleteSewaAlat($id)
     {
         try {
