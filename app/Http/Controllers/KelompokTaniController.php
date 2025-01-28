@@ -30,6 +30,22 @@ class KelompokTaniController extends Controller
         }
     }
 
+    public function listKelompokTaniByBhabinkamtibmas($id)
+    {
+        try {
+            $result = $this->kelompokTaniService->listKelompokTaniByBhabinkamtibmas($id);
+            return response()->json([
+                'id' => $result['id'],
+                'data' => $result['data'],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'id' => '0',
+                'data' => $th->getMessage(),
+            ]);
+        }
+    }
+
     public function createKelompokTani(Request $request)
     {
         try {

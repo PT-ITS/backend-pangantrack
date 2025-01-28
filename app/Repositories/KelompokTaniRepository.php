@@ -27,6 +27,22 @@ class KelompokTaniRepository
         }
     }
 
+    public function listKelompokTaniByBhabinkamtibmas($id)
+    {
+        try {
+            $dataKelompokTani = KelompokTani::where('user_id', $id)->get();
+            return [
+                'id' => '1',
+                'data' => $dataKelompokTani
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'id' => '0',
+                'data' => 'gagal mengambil data kelompok tani'
+            ];
+        }
+    }
+
     public function createKelompokTani($dataRequest)
     {
         try {

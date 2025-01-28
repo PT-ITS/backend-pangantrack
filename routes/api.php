@@ -20,6 +20,8 @@ Route::group([
     ], function () {
         Route::post('logout', [AuthController::class, 'logout']);
         Route::get('me', [AuthController::class, 'me']);
+        Route::post('update-profile/{id}', [AuthController::class, 'updateProfile']);
+        Route::post('update-password/{id}', [AuthController::class, 'updatePassword']);
         Route::group([
             'middleware' => 'auth:api'
         ], function () {
@@ -36,6 +38,7 @@ Route::group([
         'middleware' => 'auth:api'
     ], function () {
         Route::get('list', [KelompokTaniController::class, 'listKelompokTani']);
+        Route::get('list-by-bhabinkamtibmas/{id}', [KelompokTaniController::class, 'listKelompokTaniByBhabinkamtibmas']);
         Route::post('create', [KelompokTaniController::class, 'createKelompokTani']);
         Route::post('update/{id}', [KelompokTaniController::class, 'updateKelompokTani']);
         Route::delete('delete/{id}', [KelompokTaniController::class, 'deleteKelompokTani']);

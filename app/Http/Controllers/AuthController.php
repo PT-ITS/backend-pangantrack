@@ -14,6 +14,7 @@ use DateTime;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -132,5 +133,74 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
         ]);
+    }
+
+    public function updateProfile(Request $request, $id)
+    {
+        // Validate request
+        $validator = Validator::make($request->all(), [
+            'image' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|email|unique:users,email,' . $id,
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->messages()], 400);
+        }
+
+        // Find the user
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Delete old image if it exists
+            if ($user->image && Storage::exists('public/' . $user->image)) {
+                Storage::delete('public/' . $user->image);
+            }
+
+            // Store new image
+            $imagePath = $request->file('image')->store('profile', 'public');
+            $user->image = $imagePath;
+        }
+
+        // Update other fields
+        $user->name = $request->input('name', $user->name);
+        $user->email = $request->input('email', $user->email);
+        $user->save();
+
+        return response()->json(['message' => 'Profile updated successfully', 'user' => $user], 200);
+    }
+
+    public function updatePassword(Request $request, $id)
+    {
+        // Validate request
+        $validator = Validator::make($request->all(), [
+            'old_password' => 'required', // Add validation for old password
+            'password' => 'required|confirmed', // Validate new password
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->messages()], 400);
+        }
+
+        // Find the user
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        // Check if the old password matches
+        if (!Hash::check($request->old_password, $user->password)) {
+            return response()->json(['message' => 'Old password is incorrect'], 400);
+        }
+
+        // Update the password
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        return response()->json(['message' => 'Password updated successfully', 'user' => $user], 200);
     }
 }
