@@ -25,7 +25,23 @@ class KelompokTaniController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam mengambil data kelompok tani',
+                'data' => $th->getMessage(),
+            ]);
+        }
+    }
+
+    public function listKelompokTaniByBhabinkamtibmas($id)
+    {
+        try {
+            $result = $this->kelompokTaniService->listKelompokTaniByBhabinkamtibmas($id);
+            return response()->json([
+                'id' => $result['id'],
+                'data' => $result['data'],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'id' => '0',
+                'data' => $th->getMessage(),
             ]);
         }
     }
@@ -34,7 +50,7 @@ class KelompokTaniController extends Controller
     {
         try {
             $validateData = $request->validate([
-                'name_kelompok' => 'required',
+                'nama_kelompok' => 'required',
                 'status_kelompok' => 'required',
                 'alamat_kelompok' => 'required',
                 'ketua_kelompok' => 'required',
@@ -44,7 +60,7 @@ class KelompokTaniController extends Controller
                 'user_id' => 'required',
             ]);
 
-            $result = $this->kelompokTaniService->createKelompokTani($request);
+            $result = $this->kelompokTaniService->createKelompokTani($validateData);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],
@@ -52,7 +68,7 @@ class KelompokTaniController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam menambahkan data kelompok tani',
+                'data' => $th->getMessage(),
             ]);
         }
     }
@@ -61,17 +77,17 @@ class KelompokTaniController extends Controller
     {
         try {
             $validateData = $request->validate([
-                'name_kelompok' => 'required',
+                'nama_kelompok' => 'required',
                 'status_kelompok' => 'required',
                 'alamat_kelompok' => 'required',
                 'ketua_kelompok' => 'required',
                 'alamat_ketua' => 'required',
                 'hp_ketua' => 'required',
-                'foto_kelompok' => 'required',
+                'foto_kelompok' => 'nullable',
                 'user_id' => 'required',
             ]);
 
-            $result = $this->kelompokTaniService->updateKelompokTani($request, $id);
+            $result = $this->kelompokTaniService->updateKelompokTani($validateData, $id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],
@@ -79,7 +95,7 @@ class KelompokTaniController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam mengubah data kelompok tani',
+                'data' => $th->getMessage(),
             ]);
         }
     }
@@ -95,7 +111,7 @@ class KelompokTaniController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam menghapus data kelompok tani',
+                'data' => $th->getMessage(),
             ]);
         }
     }

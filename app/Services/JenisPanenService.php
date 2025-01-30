@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\JenisPanen;
 use App\Repositories\JenisPanenRepository;
+use Illuminate\Support\Facades\Storage;
 
 class JenisPanenService
 {
@@ -27,13 +29,10 @@ class JenisPanenService
             $file = $dataRequest['foto_jenis'];
 
             // Generate path penyimpanan dengan nama unik
-            $filePath = $file->store('jenis_tanaman/foto_jenis', 'public');
+            $filePath = $file->store('jenis_panen', 'public');
 
             // Baca konten file asli
             $fileContent = file_get_contents($file->getRealPath());
-
-            // Enkripsi konten file
-            $encryptedContent = Crypt::encrypt($fileContent);
 
             // Tulis ulang file dengan konten terenkripsi
             Storage::disk('public')->put($filePath, $fileContent);
@@ -43,17 +42,17 @@ class JenisPanenService
         }
 
         $request = [
-            'name_jenis_panen' => $dataRequest['name_jenis_panen'],
-            'foto_jenis' => $dataRequest['foto_jenis']
+            'jenis_panen' => $dataRequest['jenis_panen'],
+            'foto_jenis' => $fotoJenisTanaman
         ];
         return $this->jenisPanenRepository->createJenisPanen($request);
     }
 
-    public function updateJenisPanen($dataRequest)
+    public function updateJenisPanen($dataRequest, $id)
     {
         // Ambil data kelompok tani saat ini dari repository
         $jenisTanaman = $this->jenisPanenRepository->find($id);
-        
+
         // Proses upload foto baru jika ada
         $fotoJenisTanaman = $jenisTanaman->foto_jenis; // Simpan nama file lama secara default
 
@@ -66,7 +65,7 @@ class JenisPanenService
             $file = $dataRequest['foto_jenis'];
 
             // Generate path penyimpanan dengan nama unik
-            $filePath = $file->store('jenis_tanaman/foto_jenis', 'public');
+            $filePath = $file->store('jenis_panen', 'public');
 
             // Baca konten file asli
             $fileContent = file_get_contents($file->getRealPath());
@@ -78,14 +77,19 @@ class JenisPanenService
         }
 
         $request = [
-            'name_jenis_panen' => $dataRequest['name_jenis_panen'],
+            'jenis_panen' => $dataRequest['jenis_panen'],
             'foto_jenis' => $fotoJenisTanaman
         ];
-        return $this->jenisPanenRepository->updateJenisPanen($request);
+        return $this->jenisPanenRepository->updateJenisPanen($request, $id);
     }
 
     public function deleteJenisPanen($id)
     {
+        // Ambil data kelompok tani saat ini dari repository
+        $jenis = $this->jenisPanenRepository->find($id);
+        if ($jenis->foto_jenis) {
+            Storage::disk('public')->delete($jenis->foto_jenis);
+        }
         return $this->jenisPanenRepository->deleteJenisPanen($id);
     }
 }

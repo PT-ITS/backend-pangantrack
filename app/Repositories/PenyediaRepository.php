@@ -6,6 +6,11 @@ use App\Models\Penyedia;
 
 class PenyediaRepository
 {
+    public function find($id)
+    {
+        return Penyedia::find($id);
+    }
+
     public function listPenyedia()
     {
         try {
@@ -22,10 +27,10 @@ class PenyediaRepository
         }
     }
 
-    public function createPenyedia($data)
+    public function createPenyedia($requestData)
     {
         try {
-            $dataPenyedia = Penyedia::create($data);
+            $dataPenyedia = Penyedia::create($requestData);
             return [
                 'id' => '1',
                 'data' => $dataPenyedia
@@ -38,10 +43,10 @@ class PenyediaRepository
         }
     }
 
-    public function updatePenyedia($id, $data)
+    public function updatePenyedia($requestData, $id)
     {
         try {
-            $dataPenyedia = Penyedia::where('id', $id)->update($data);
+            $dataPenyedia = Penyedia::find($id)->update($requestData);
             return [
                 'id' => '1',
                 'data' => $dataPenyedia
@@ -57,7 +62,7 @@ class PenyediaRepository
     public function deletePenyedia($id)
     {
         try {
-            $dataPenyedia = Penyedia::where('id', $id)->delete();
+            $dataPenyedia = Penyedia::find($id)->delete();
             return [
                 'id' => '1',
                 'data' => $dataPenyedia
@@ -68,10 +73,5 @@ class PenyediaRepository
                 'data' => 'terjadi kesalahan dalam menghapus data penyedia'
             ];
         }
-    }
-
-    public function find($id)
-    {
-        return Penyedia::find($id);
     }
 }

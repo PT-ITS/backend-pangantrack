@@ -25,7 +25,7 @@ class PetaniController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam mengambil data petani',
+                'data' => $th->getMessage(),
             ]);
         }
     }
@@ -34,7 +34,7 @@ class PetaniController extends Controller
     {
         try {
             $validateData = $request->validate([
-                'name_petani' => 'required',
+                'nama_petani' => 'required',
                 'alamat_petani' => 'required',
                 'hp_petani' => 'required',
                 'luas_lahan' => 'required',
@@ -48,7 +48,7 @@ class PetaniController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam menambahkan data petani',
+                'data' => $th->getMessage(),
             ]);
         }
     }
@@ -57,7 +57,7 @@ class PetaniController extends Controller
     {
         try {
             $validateData = $request->validate([
-                'name_petani' => 'required',
+                'nama_petani' => 'required',
                 'alamat_petani' => 'required',
                 'hp_petani' => 'required',
                 'luas_lahan' => 'required',
@@ -71,7 +71,7 @@ class PetaniController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam mengubah data petani',
+                'data' => $th->getMessage(),
             ]);
         }
     }
@@ -87,7 +87,7 @@ class PetaniController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam menghapus data petani',
+                'data' => $th->getMessage(),
             ]);
         }
     }

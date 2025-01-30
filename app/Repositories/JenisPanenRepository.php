@@ -31,18 +31,7 @@ class JenisPanenRepository
 
     public function find($id)
     {
-        try {
-            $data = $this->jenisPanenModel->find($id);
-            return [
-                'id' => '1',
-                'data' => $data
-            ];
-        } catch (\Throwable $th) {
-            return [
-                'id' => '0',
-                'data' => 'terjadi kesalahan dalam mengambil data jenis panen'
-            ];
-        }
+        return $this->jenisPanenModel->find($id);
     }
 
     public function createJenisPanen($data)
@@ -64,7 +53,7 @@ class JenisPanenRepository
     public function updateJenisPanen($data, $id)
     {
         try {
-            $dataJenisPanen = $this->jenisPanenModel->where('id', $id)->update($data);
+            $dataJenisPanen = $this->jenisPanenModel->find($id)->update($data);
             return [
                 'id' => '1',
                 'data' => 'berhasil mengubah data jenis panen'
@@ -80,7 +69,7 @@ class JenisPanenRepository
     public function deleteJenisPanen($id)
     {
         try {
-            $dataJenisPanen = $this->jenisPanenModel->where('id', $id)->delete();
+            $dataJenisPanen = $this->jenisPanenModel->find($id)->delete();
             return [
                 'id' => '1',
                 'data' => 'berhasil menghapus data jenis panen'

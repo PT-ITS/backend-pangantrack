@@ -13,7 +13,7 @@ class SewaAlatRepository
             return [
                 'id' => '1',
                 'data' => $dataSewaAlat
-            ]; 
+            ];
         } catch (\Throwable $th) {
             return [
                 'id' => '0',
@@ -38,10 +38,10 @@ class SewaAlatRepository
         }
     }
 
-    public function aksiPengajuanSewaAlat($data)
+    public function aksiPengajuanSewaAlat($data, $id)
     {
         try {
-            $dataSewaAlat = SewaAlat::find($data['id']);
+            $dataSewaAlat = SewaAlat::find($id);
             $dataSewaAlat->update(['status' => $data['status']]);
             return [
                 'id' => '1',
@@ -72,8 +72,8 @@ class SewaAlatRepository
         }
     }
 
-    public function deleteSewaAlat($id) 
-    {   
+    public function deleteSewaAlat($id)
+    {
         try {
             $dataSewaAlat = SewaAlat::find($id);
             $dataSewaAlat->delete();

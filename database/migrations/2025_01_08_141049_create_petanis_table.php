@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('petanis', function (Blueprint $table) {
             $table->id();
-            $table->string('name_petani');
+            $table->string('nama_petani');
             $table->string('alamat_petani');
             $table->string('hp_petani');
             $table->string('luas_lahan');

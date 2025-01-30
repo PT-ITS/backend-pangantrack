@@ -3,10 +3,11 @@
 namespace App\Services;
 
 use App\Repositories\KelompokTaniRepository;
+use Illuminate\Support\Facades\Storage;
 
 class KelompokTaniService
 {
-    private $kelompokTaniRepository;   
+    private $kelompokTaniRepository;
 
     public function __construct(KelompokTaniRepository $kelompokTaniRepository)
     {
@@ -18,6 +19,11 @@ class KelompokTaniService
         return $this->kelompokTaniRepository->listKelompokTani();
     }
 
+    public function listKelompokTaniByBhabinkamtibmas($id)
+    {
+        return $this->kelompokTaniRepository->listKelompokTaniByBhabinkamtibmas($id);
+    }
+
     public function createKelompokTani($dataRequest)
     {
         // Proses upload foto
@@ -27,13 +33,10 @@ class KelompokTaniService
             $file = $dataRequest['foto_kelompok'];
 
             // Generate path penyimpanan dengan nama unik
-            $filePath = $file->store('kelompok_tani/foto_kelompok', 'public');
+            $filePath = $file->store('kelompok_tani', 'public');
 
             // Baca konten file asli
             $fileContent = file_get_contents($file->getRealPath());
-
-            // Enkripsi konten file
-            $encryptedContent = Crypt::encrypt($fileContent);
 
             // Tulis ulang file dengan konten terenkripsi
             Storage::disk('public')->put($filePath, $fileContent);
@@ -43,11 +46,14 @@ class KelompokTaniService
         }
 
         $request = [
-            'name_kelompok' => $dataRequest['name_kelompok'],
+            'nama_kelompok' => $dataRequest['nama_kelompok'],
+            'status_kelompok' => $dataRequest['status_kelompok'],
             'alamat_kelompok' => $dataRequest['alamat_kelompok'],
             'ketua_kelompok' => $dataRequest['ketua_kelompok'],
+            'alamat_ketua' => $dataRequest['alamat_ketua'],
+            'hp_ketua' => $dataRequest['hp_ketua'],
             'foto_kelompok' => $fotoKelompokName,
-            'status_kelompok' => $dataRequest['status_kelompok'],
+            'user_id' => $dataRequest['user_id'],
         ];
         return $this->kelompokTaniRepository->createKelompokTani($request);
     }
@@ -56,7 +62,7 @@ class KelompokTaniService
     {
         // Ambil data kelompok tani saat ini dari repository
         $kelompokTani = $this->kelompokTaniRepository->find($id);
-        
+
         // Proses upload foto baru jika ada
         $fotoKelompokName = $kelompokTani->foto_kelompok; // Simpan nama file lama secara default
 
@@ -69,7 +75,7 @@ class KelompokTaniService
             $file = $dataRequest['foto_kelompok'];
 
             // Generate path penyimpanan dengan nama unik
-            $filePath = $file->store('kelompok_tani/foto_kelompok', 'public');
+            $filePath = $file->store('kelompok_tani', 'public');
 
             // Baca konten file asli
             $fileContent = file_get_contents($file->getRealPath());
@@ -81,11 +87,14 @@ class KelompokTaniService
         }
 
         $request = [
-            'name_kelompok' => $dataRequest['name_kelompok'],
+            'nama_kelompok' => $dataRequest['nama_kelompok'],
+            'status_kelompok' => $dataRequest['status_kelompok'],
             'alamat_kelompok' => $dataRequest['alamat_kelompok'],
             'ketua_kelompok' => $dataRequest['ketua_kelompok'],
-            'status_kelompok' => $dataRequest['status_kelompok'],
+            'alamat_ketua' => $dataRequest['alamat_ketua'],
+            'hp_ketua' => $dataRequest['hp_ketua'],
             'foto_kelompok' => $fotoKelompokName,
+            'user_id' => $dataRequest['user_id'],
         ];
 
         return $this->kelompokTaniRepository->updateKelompokTani($request, $id);
@@ -100,5 +109,4 @@ class KelompokTaniService
         }
         return $this->kelompokTaniRepository->deleteKelompokTani($id);
     }
-
 }

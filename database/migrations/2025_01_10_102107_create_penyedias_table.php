@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('penyedias', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nama');
             $table->string('wilayah');
             $table->foreignId('id_pj')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
