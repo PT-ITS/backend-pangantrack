@@ -9,6 +9,7 @@ use App\Http\Controllers\PetaniController;
 use App\Http\Controllers\JenisPanenController;
 use App\Http\Controllers\PanenController;
 use App\Http\Controllers\PenyediaController;
+use App\Http\Controllers\SewaAlatController;
 
 Route::group([
     'prefix' => 'auth'
@@ -37,6 +38,7 @@ Route::group([
     Route::group([
         'middleware' => 'auth:api'
     ], function () {
+        Route::get('detail/{id}', [KelompokTaniController::class, 'detailKelompokTani']);
         Route::get('list', [KelompokTaniController::class, 'listKelompokTani']);
         Route::get('list-by-bhabinkamtibmas/{id}', [KelompokTaniController::class, 'listKelompokTaniByBhabinkamtibmas']);
         Route::post('create', [KelompokTaniController::class, 'createKelompokTani']);
@@ -107,5 +109,19 @@ Route::group([
         Route::post('create', [AlatController::class, 'createAlat']);
         Route::post('update/{id}', [AlatController::class, 'updateAlat']);
         Route::delete('delete/{id}', [AlatController::class, 'deleteAlat']);
+    });
+});
+
+Route::group([
+    'prefix' => 'sewa-alsintan'
+], function () {
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::get('list/{id}', [SewaAlatController::class, 'listSewaAlatByKelompokTani']);
+        Route::post('create', [SewaAlatController::class, 'pengajuanSewaAlat']);
+        Route::post('update/{id}', [SewaAlatController::class, 'updateSewaAlat']);
+        Route::post('status/{id}', [SewaAlatController::class, 'aksiPengajuanSewaAlat']);
+        Route::delete('delete/{id}', [SewaAlatController::class, 'deleteSewaAlat']);
     });
 });

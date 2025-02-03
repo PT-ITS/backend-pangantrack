@@ -11,6 +11,7 @@ class Panen extends Model
 
     protected $fillable = [
         'jumlah_panen',
+        'tanggal_tanam',
         'tanggal_panen',
         'status_panen',
         'petani_id',

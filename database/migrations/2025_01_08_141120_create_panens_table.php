@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('panens', function (Blueprint $table) {
             $table->id();
-            $table->string('jumlah_panen');
-            $table->date('tanggal_panen');
+            $table->string('jumlah_panen')->nullable();
+            $table->date('tanggal_tanam')->nullable();
+            $table->date('tanggal_panen')->nullable();
             $table->enum('status_panen', [
                 '0', // belum tanam
                 '1', // tanam

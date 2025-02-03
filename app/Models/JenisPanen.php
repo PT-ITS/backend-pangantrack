@@ -13,4 +13,9 @@ class JenisPanen extends Model
         'jenis_panen',
         'foto_jenis'
     ];
+
+    public function panens()
+    {
+        return $this->hasMany(Panen::class, 'jenis_panen_id');
+    }
 }

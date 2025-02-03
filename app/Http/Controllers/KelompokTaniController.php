@@ -14,6 +14,22 @@ class KelompokTaniController extends Controller
         $this->kelompokTaniService = $kelompokTaniService;
     }
 
+    public function detailKelompokTani($id)
+    {
+        try {
+            $result = $this->kelompokTaniService->detailKelompokTani($id);
+            return response()->json([
+                'id' => $result['id'],
+                'data' => $result['data'],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'id' => '0',
+                'data' => $th->getMessage(),
+            ]);
+        }
+    }
+
     public function listKelompokTani()
     {
         try {

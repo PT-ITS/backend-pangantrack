@@ -34,8 +34,9 @@ class PanenController extends Controller
     {
         try {
             $validateData = $request->validate([
-                'jumlah_panen' => 'required',
-                'tanggal_panen' => 'required',
+                'jumlah_panen' => 'nullable',
+                'tanggal_tanam' => 'nullable',
+                'tanggal_panen' => 'nullable',
                 'status_panen' => 'required',
                 'petani_id' => 'required',
                 'jenis_panen_id' => 'required'
@@ -57,8 +58,9 @@ class PanenController extends Controller
     {
         try {
             $validateData = $request->validate([
-                'jumlah_panen' => 'required',
-                'tanggal_panen' => 'required',
+                'jumlah_panen' => 'nullable',
+                'tanggal_tanam' => 'nullable',
+                'tanggal_panen' => 'nullable',
                 'status_panen' => 'required',
                 'petani_id' => 'required',
                 'jenis_panen_id' => 'required'
