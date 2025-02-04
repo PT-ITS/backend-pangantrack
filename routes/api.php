@@ -4,6 +4,7 @@ use App\Http\Controllers\AlatController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BhabinkamtibmasController;
 use App\Http\Controllers\KelompokTaniController;
 use App\Http\Controllers\PetaniController;
 use App\Http\Controllers\JenisPanenController;
@@ -29,6 +30,20 @@ Route::group([
             // api secure
 
         });
+    });
+});
+
+Route::group([
+    'prefix' => 'bhabinkamtibmas'
+], function () {
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::get('detail/{id}', [BhabinkamtibmasController::class, 'detailBhabinkamtibmas']);
+        Route::get('list', [BhabinkamtibmasController::class, 'listBhabinkamtibmas']);
+        Route::post('create', [BhabinkamtibmasController::class, 'createBhabinkamtibmas']);
+        Route::post('update/{id}', [BhabinkamtibmasController::class, 'updateBhabinkamtibmas']);
+        Route::delete('delete/{id}', [BhabinkamtibmasController::class, 'deleteBhabinkamtibmas']);
     });
 });
 
