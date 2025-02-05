@@ -45,6 +45,8 @@ class AlatService
             'jenis_alat' => $dataRequest['jenis_alat'],
             'nama_alat' => $dataRequest['nama_alat'],
             'deskripsi_alat' => $dataRequest['deskripsi_alat'],
+            'harga_sewa_alat' => $dataRequest['harga_sewa_alat'],
+            'jumlah_alat' => $dataRequest['jumlah_alat'],
             'foto_alat' => $fotoAlatTani,
             'status' => $dataRequest['status'],
             'penyedia_id' => $dataRequest['penyedia_id']
@@ -85,6 +87,8 @@ class AlatService
             'jenis_alat' => $dataRequest['jenis_alat'],
             'nama_alat' => $dataRequest['nama_alat'],
             'deskripsi_alat' => $dataRequest['deskripsi_alat'],
+            'harga_sewa_alat' => $dataRequest['harga_sewa_alat'],
+            'jumlah_alat' => $dataRequest['jumlah_alat'],
             'foto_alat' => $fotoAlatTani,
             'status' => $dataRequest['status'],
             'penyedia_id' => $dataRequest['penyedia_id']

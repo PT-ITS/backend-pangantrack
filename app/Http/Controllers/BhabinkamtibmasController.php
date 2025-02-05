@@ -30,6 +30,22 @@ class BhabinkamtibmasController extends Controller
         }
     }
 
+    public function detailBhabinkamtibmasByUserId($id)
+    {
+        try {
+            $result = $this->bhabinkamtibmasService->detailBhabinkamtibmasByUserId($id);
+            return response()->json([
+                'id' => $result['id'],
+                'data' => $result['data'],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'id' => '0',
+                'data' => $th->getMessage(),
+            ]);
+        }
+    }
+
     public function listBhabinkamtibmas()
     {
         try {

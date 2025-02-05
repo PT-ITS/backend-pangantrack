@@ -35,6 +35,26 @@ class BhabinkamtibmasRepository
         }
     }
 
+    public function detailBhabinkamtibmasByUserId($id)
+    {
+        try {
+            $data = $this->bhabinkamtibmasModel
+                ->join('users', 'bhabinkamtibmas.user_id', '=', 'users.id')
+                ->select('bhabinkamtibmas.*', 'users.image', 'users.name', 'users.email')
+                ->where('users.id', $id)
+                ->first();
+            return [
+                'id' => '1',
+                'data' => $data
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'id' => '0',
+                'data' => 'terjadi kesalahan dalam mengambil data bhabinkamtibmas'
+            ];
+        }
+    }
+
     public function listBhabinkamtibmas()
     {
         try {

@@ -40,6 +40,7 @@ Route::group([
         'middleware' => 'auth:api'
     ], function () {
         Route::get('detail/{id}', [BhabinkamtibmasController::class, 'detailBhabinkamtibmas']);
+        Route::get('detail-by-user/{id}', [BhabinkamtibmasController::class, 'detailBhabinkamtibmasByUserId']);
         Route::get('list', [BhabinkamtibmasController::class, 'listBhabinkamtibmas']);
         Route::post('create', [BhabinkamtibmasController::class, 'createBhabinkamtibmas']);
         Route::post('update/{id}', [BhabinkamtibmasController::class, 'updateBhabinkamtibmas']);

@@ -18,6 +18,11 @@ class BhabinkamtibmasService
         return $this->bhabinkamtibmasRepository->detailBhabinkamtibmas($id);
     }
 
+    public function detailBhabinkamtibmasByUserId($id)
+    {
+        return $this->bhabinkamtibmasRepository->detailBhabinkamtibmasByUserId($id);
+    }
+
     public function listBhabinkamtibmas()
     {
         return $this->bhabinkamtibmasRepository->listBhabinkamtibmas();
