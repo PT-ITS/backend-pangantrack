@@ -21,8 +21,12 @@ return new class extends Migration
             $table->enum('level', [
                 0, // admin
 
-                1, // bhabinkamtibmas
-            ])->default(1);
+                1, // admin polda
+
+                2, // penyedia
+
+                3, // bhabinkamtibmas
+            ])->default(3);
             $table->enum('status', [
                 0, // process
 

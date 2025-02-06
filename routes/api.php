@@ -4,6 +4,7 @@ use App\Http\Controllers\AlatController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminPoldaController;
 use App\Http\Controllers\BhabinkamtibmasController;
 use App\Http\Controllers\KelompokTaniController;
 use App\Http\Controllers\PetaniController;
@@ -30,6 +31,36 @@ Route::group([
             // api secure
 
         });
+    });
+});
+
+Route::group([
+    'prefix' => 'admin-polda'
+], function () {
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::get('detail/{id}', [AdminPoldaController::class, 'detailAdminPolda']);
+        Route::get('detail-by-user/{id}', [AdminPoldaController::class, 'detailAdminPoldaByUserId']);
+        Route::get('list', [AdminPoldaController::class, 'listAdminPolda']);
+        Route::post('create', [AdminPoldaController::class, 'createAdminPolda']);
+        Route::post('update/{id}', [AdminPoldaController::class, 'updateAdminPolda']);
+        Route::delete('delete/{id}', [AdminPoldaController::class, 'deleteAdminPolda']);
+    });
+});
+
+Route::group([
+    'prefix' => 'penyedia'
+], function () {
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::get('detail/{id}', [PenyediaController::class, 'detailPenyedia']);
+        Route::get('detail-by-user/{id}', [PenyediaController::class, 'detailPenyediaByUserId']);
+        Route::get('list', [PenyediaController::class, 'listPenyedia']);
+        Route::post('create', [PenyediaController::class, 'createPenyedia']);
+        Route::post('update/{id}', [PenyediaController::class, 'updatePenyedia']);
+        Route::delete('delete/{id}', [PenyediaController::class, 'deletePenyedia']);
     });
 });
 
@@ -99,19 +130,6 @@ Route::group([
         Route::post('create', [PanenController::class, 'createPanen']);
         Route::post('update/{id}', [PanenController::class, 'updatePanen']);
         Route::delete('delete/{id}', [PanenController::class, 'deletePanen']);
-    });
-});
-
-Route::group([
-    'prefix' => 'penyedia'
-], function () {
-    Route::group([
-        'middleware' => 'auth:api'
-    ], function () {
-        Route::get('list', [PenyediaController::class, 'listPenyedia']);
-        Route::post('create', [PenyediaController::class, 'createPenyedia']);
-        Route::post('update/{id}', [PenyediaController::class, 'updatePenyedia']);
-        Route::delete('delete/{id}', [PenyediaController::class, 'deletePenyedia']);
     });
 });
 

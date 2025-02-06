@@ -24,24 +24,24 @@ class DataSeeder extends Seeder
     {
         // Kelompok Tani
         KelompokTani::create([
-            'nama_kelompok' => 'Petani Racing',
+            'nama_kelompok' => 'Kelompok Tani Mutiara Agung',
             'status_kelompok' => '1',
             'alamat_kelompok' => 'Jl. Kurma',
             'ketua_kelompok' => 'Zamorano',
             'alamat_ketua' => 'Jl. Kurma',
             'hp_ketua' => '08123456789',
             'foto_kelompok' => 'kelompok_tani/default.jpg',
-            'user_id' => '2'
+            'user_id' => '4'
         ]);
         KelompokTani::create([
-            'nama_kelompok' => 'Petani Gacor',
+            'nama_kelompok' => 'Kelompok Tani Sukses Bersama',
             'status_kelompok' => '1',
             'alamat_kelompok' => 'Jl. Kurma',
             'ketua_kelompok' => 'Jhezy',
             'alamat_ketua' => 'Jl. Kurma',
             'hp_ketua' => '08123456789',
             'foto_kelompok' => 'kelompok_tani/default.jpg',
-            'user_id' => '2'
+            'user_id' => '4'
         ]);
         // Petani
         Petani::create([
@@ -80,17 +80,6 @@ class DataSeeder extends Seeder
             'petani_id' => '2',
             'jenis_panen_id' => '1',
         ]);
-        // Penyedia
-        Penyedia::create([
-            'nama' => 'Fadel',
-            'wilayah' => 'Jl. Kurma',
-            'id_pj' => '2',
-        ]);
-        Penyedia::create([
-            'nama' => 'Kevin',
-            'wilayah' => 'Jl. Kurma',
-            'id_pj' => '2',
-        ]);
         // Alsintan
         Alat::create([
             'jenis_alat' => 'Traktor',
@@ -100,7 +89,7 @@ class DataSeeder extends Seeder
             'jumlah_alat' => '1',
             'foto_alat' => 'alat_tani/default.jpeg',
             'status' => '1',
-            'penyedia_id' => '1',
+            'penyedia_id' => '3',
         ]);
         Alat::create([
             'jenis_alat' => 'Mower',
@@ -110,7 +99,7 @@ class DataSeeder extends Seeder
             'jumlah_alat' => '3',
             'foto_alat' => 'alat_tani/default.jpeg',
             'status' => '1',
-            'penyedia_id' => '2',
+            'penyedia_id' => '3',
         ]);
     }
 }

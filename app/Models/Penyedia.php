@@ -11,6 +11,8 @@ class Penyedia extends Model
 
     protected $fillable = [
         'nama',
+        'alamat',
+        'hp',
         'wilayah',
         'id_pj',
     ];

@@ -23,7 +23,7 @@ return new class extends Migration
                 '0', // tidak tersedia
                 '1', // tersedia
             ])->default('1');
-            $table->foreignId('penyedia_id')->constrained('penyedias')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('penyedia_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
