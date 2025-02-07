@@ -126,7 +126,7 @@ Route::group([
     Route::group([
         'middleware' => 'auth:api'
     ], function () {
-        Route::get('list/{id}', [PanenController::class, 'listPanenByPetani']);
+        Route::get('list/{id}', [PanenController::class, 'listPanenByKelompokTani']);
         Route::post('create', [PanenController::class, 'createPanen']);
         Route::post('update/{id}', [PanenController::class, 'updatePanen']);
         Route::delete('delete/{id}', [PanenController::class, 'deletePanen']);
@@ -153,8 +153,10 @@ Route::group([
         'middleware' => 'auth:api'
     ], function () {
         Route::get('list/{id}', [SewaAlatController::class, 'listSewaAlatByKelompokTani']);
+        Route::get('list-by-bhabinkamtibmas/{id}', [SewaAlatController::class, 'listSewaAlatByBhabinkamtibmas']);
         Route::post('create', [SewaAlatController::class, 'pengajuanSewaAlat']);
         Route::post('update/{id}', [SewaAlatController::class, 'updateSewaAlat']);
+        Route::post('pengembalian/{id}', [SewaAlatController::class, 'pengajuanPengembalianSewaAlat']);
         Route::post('status/{id}', [SewaAlatController::class, 'aksiPengajuanSewaAlat']);
         Route::delete('delete/{id}', [SewaAlatController::class, 'deleteSewaAlat']);
     });

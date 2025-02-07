@@ -13,16 +13,16 @@ class PanenService
         $this->panenRepository = $panenRepository;
     }
 
-    public function listPanenByPetani($id)
+    public function listPanenByKelompokTani($id)
     {
-        return $this->panenRepository->listPanenByPetani($id);
+        return $this->panenRepository->listPanenByKelompokTani($id);
     }
 
     public function createPanen($data)
     {
         return $this->panenRepository->createPanen($data);
     }
-    
+
     public function updatePanen($data, $id)
     {
         return $this->panenRepository->updatePanen($data, $id);

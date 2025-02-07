@@ -71,13 +71,13 @@ class DataSeeder extends Seeder
             'tanggal_tanam' => '2024-08-02',
             'tanggal_panen' => '2025-02-02',
             'status_panen' => '2',
-            'petani_id' => '1',
+            'kelompok_tani_id' => '1',
             'jenis_panen_id' => '1',
         ]);
         Panen::create([
             'tanggal_tanam' => '2025-02-02',
             'status_panen' => '1',
-            'petani_id' => '2',
+            'kelompok_tani_id' => '2',
             'jenis_panen_id' => '1',
         ]);
         // Alsintan

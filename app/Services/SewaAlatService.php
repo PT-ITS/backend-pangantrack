@@ -16,6 +16,11 @@ class SewaAlatService
         $this->penyediaRepository = $penyediaRepository;
     }
 
+    public function listSewaAlatByBhabinkamtibmas($id)
+    {
+        return $this->sewaAlatRepository->listSewaAlatByBhabinkamtibmas($id);
+    }
+
     public function listSewaAlatByKelompokTani($id)
     {
         return $this->sewaAlatRepository->listSewaAlatByKelompokTani($id);
@@ -26,6 +31,28 @@ class SewaAlatService
         return $this->sewaAlatRepository->pengajuanSewaAlat($data);
     }
 
+    public function pengajuanPengembalianSewaAlat($id)
+    {
+        try {
+            $user = auth()->user()->id;
+            $alat = $this->sewaAlatRepository->find($id);
+
+            if ($user == $alat->id_babinsa) {
+                return $this->sewaAlatRepository->pengajuanPengembalianSewaAlat($id);
+            } else {
+                return [
+                    'id' => '0',
+                    'data' => 'anda bukan bhabinkamtibmas yang menyewa alat'
+                ];
+            }
+        } catch (\Throwable $th) {
+            return [
+                'id' => '0',
+                'data' => 'terjadi kesalahan dalam menyetujui pengajuan sewa alat'
+            ];
+        }
+    }
+
     public function aksiPengajuanSewaAlat($data, $id)
     {
         try {
@@ -33,7 +60,7 @@ class SewaAlatService
             $alat = $this->sewaAlatRepository->find($id);
             $penyedia = $this->penyediaRepository->find($alat->penyedia_id);
 
-            if ($user == $penyedia->id_pj) {
+            if ($user == $penyedia->user_id) {
                 return $this->sewaAlatRepository->aksiPengajuanSewaAlat($data, $id);
             } else {
                 return [

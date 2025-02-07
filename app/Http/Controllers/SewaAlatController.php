@@ -14,6 +14,22 @@ class SewaAlatController extends Controller
         $this->sewaAlatService = $sewaAlatService;
     }
 
+    public function listSewaAlatByBhabinkamtibmas($id)
+    {
+        try {
+            $result = $this->sewaAlatService->listSewaAlatByBhabinkamtibmas($id);
+            return response()->json([
+                'id' => $result['id'],
+                'data' => $result['data'],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'id' => '0',
+                'data' => 'terjadi kesalahan dalam mengambil data sewa alat',
+            ]);
+        }
+    }
+
     public function listSewaAlatByKelompokTani($id)
     {
         try {
@@ -36,6 +52,7 @@ class SewaAlatController extends Controller
             $validateData = $request->validate([
                 'tanggal_sewa' => 'required',
                 'tanggal_kembali' => 'required',
+                'jumlah_alat_disewa' => 'required',
                 'status' => 'required',
                 'id_alat' => 'required',
                 'id_kelompok' => 'required',
@@ -51,6 +68,22 @@ class SewaAlatController extends Controller
             return response()->json([
                 'id' => '0',
                 'data' => 'terjadi kesalahan dalam menambahkan data sewa alat',
+            ]);
+        }
+    }
+
+    public function pengajuanPengembalianSewaAlat($id)
+    {
+        try {
+            $result = $this->sewaAlatService->pengajuanPengembalianSewaAlat($id);
+            return response()->json([
+                'id' => $result['id'],
+                'data' => $result['data'],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'id' => '0',
+                'data' => 'terjadi kesalahan dalam menyetujui pengajuan sewa alat',
             ]);
         }
     }
@@ -82,6 +115,7 @@ class SewaAlatController extends Controller
                 'id' => 'required',
                 'tanggal_sewa' => 'required',
                 'tanggal_kembali' => 'required',
+                'jumlah_alat_disewa' => 'required',
                 'status' => 'required',
                 'id_alat' => 'required',
                 'id_kelompok' => 'required',

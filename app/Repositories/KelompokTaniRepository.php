@@ -34,20 +34,22 @@ class KelompokTaniRepository
             $jumlahPetani = count($idPetani);
 
             // Count jumlah_jenis_panen (unique count of jenis_panen_id in Panen)
-            $jumlahJenisPanen = Panen::whereIn('petani_id', $idPetani)->distinct('jenis_panen_id')->count('jenis_panen_id');
+            $jumlahJenisPanen = Panen::where('kelompok_tani_id', $id)
+                ->distinct('jenis_panen_id')
+                ->count('jenis_panen_id');
 
             // Get daftar_jenis_panen based on jenis_panen_id from Panen
             $daftarJenisPanen = JenisPanen::whereIn(
                 'id',
-                Panen::whereIn('petani_id', $idPetani)->pluck('jenis_panen_id')
+                Panen::where('kelompok_tani_id', $id)->pluck('jenis_panen_id')
             )
-                ->withSum(['panens' => function ($query) use ($idPetani) {
-                    $query->whereIn('petani_id', $idPetani);
+                ->withSum(['panens' => function ($query) use ($id) {
+                    $query->where('kelompok_tani_id', $id);
                 }], 'jumlah_panen')
                 ->get();
 
             // Sum jumlah_panen from Panen
-            $jumlahPanen = Panen::whereIn('petani_id', $idPetani)->sum('jumlah_panen');
+            $jumlahPanen = Panen::where('kelompok_tani_id', $id)->sum('jumlah_panen');
 
             // Sum total_luas_lahan from Petani
             $totalLuasLahan = Petani::where('kelompok_id', $id)->sum('luas_lahan');

@@ -15,6 +15,11 @@ class PenyediaRepository
         $this->penyediaModel = $penyediaModel;
     }
 
+    public function find($id)
+    {
+        return Penyedia::find($id);
+    }
+
     public function detailPenyedia($id)
     {
         try {
