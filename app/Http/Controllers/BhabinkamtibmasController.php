@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\BhabinkamtibmasService;
+use Illuminate\Support\Facades\Validator;
 
 class BhabinkamtibmasController extends Controller
 {
@@ -71,8 +72,8 @@ class BhabinkamtibmasController extends Controller
                 'password' => 'required',
                 'nama_bhabin' => 'required',
                 'nrp_bhabin' => 'required',
-                'jabatan_bhabin' => 'nullable',
-                'tempat_dinas_bhabin' => 'nullable',
+                'jabatan_bhabin' => 'required',
+                'tempat_dinas_bhabin' => 'required',
                 'alamat_bhabin' => 'required',
                 'hp_bhabin' => 'required',
             ]);
@@ -92,18 +93,18 @@ class BhabinkamtibmasController extends Controller
     public function updateBhabinkamtibmas(Request $request, $id)
     {
         try {
-            $validateData = $request->validate([
+            $validateData = Validator::make($request->all(), [
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email,' . $id,
                 'password' => 'required',
                 'nama_bhabin' => 'required',
                 'nrp_bhabin' => 'required',
-                'jabatan_bhabin' => 'nullable',
-                'tempat_dinas_bhabin' => 'nullable',
+                'jabatan_bhabin' => 'required',
+                'tempat_dinas_bhabin' => 'required',
                 'alamat_bhabin' => 'required',
                 'hp_bhabin' => 'required',
             ]);
-            $result = $this->bhabinkamtibmasService->updateBhabinkamtibmas($validateData, $id);
+            $result = $this->bhabinkamtibmasService->updateBhabinkamtibmas($request, $id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],

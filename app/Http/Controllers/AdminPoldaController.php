@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\AdminPoldaService;
+use Illuminate\Support\Facades\Validator;
 
 class AdminPoldaController extends Controller
 {
@@ -71,8 +72,8 @@ class AdminPoldaController extends Controller
                 'password' => 'required',
                 'nama_admin' => 'required',
                 'nrp_admin' => 'required',
-                'jabatan_admin' => 'nullable',
-                'tempat_dinas_admin' => 'nullable',
+                'jabatan_admin' => 'required',
+                'tempat_dinas_admin' => 'required',
                 'alamat_admin' => 'required',
                 'hp_admin' => 'required',
             ]);
@@ -92,18 +93,18 @@ class AdminPoldaController extends Controller
     public function updateAdminPolda(Request $request, $id)
     {
         try {
-            $validateData = $request->validate([
+            $validateData = Validator::make($request->all(), [
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email,' . $id,
                 'password' => 'required',
                 'nama_admin' => 'required',
                 'nrp_admin' => 'required',
-                'jabatan_admin' => 'nullable',
-                'tempat_dinas_admin' => 'nullable',
+                'jabatan_admin' => 'required',
+                'tempat_dinas_admin' => 'required',
                 'alamat_admin' => 'required',
                 'hp_admin' => 'required',
             ]);
-            $result = $this->adminPoldaService->updateAdminPolda($validateData, $id);
+            $result = $this->adminPoldaService->updateAdminPolda($request, $id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],

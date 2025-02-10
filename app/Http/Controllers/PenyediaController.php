@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\PenyediaService;
+use Illuminate\Support\Facades\Validator;
 
 class PenyediaController extends Controller
 {
@@ -90,7 +91,7 @@ class PenyediaController extends Controller
     public function updatePenyedia(Request $request, $id)
     {
         try {
-            $validateData = $request->validate([
+            $validateData = Validator::make($request->all(), [
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email,' . $id,
                 'password' => 'required',
@@ -99,7 +100,7 @@ class PenyediaController extends Controller
                 'hp' => 'required',
                 'wilayah' => 'required',
             ]);
-            $result = $this->penyediaService->updatePenyedia($validateData, $id);
+            $result = $this->penyediaService->updatePenyedia($request, $id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],

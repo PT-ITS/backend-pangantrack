@@ -100,6 +100,7 @@ class KelompokTaniService
             'alamat_ketua' => $dataRequest['alamat_ketua'],
             'hp_ketua' => $dataRequest['hp_ketua'],
             'foto_kelompok' => $fotoKelompokName,
+            'id_kab_kota' => $dataRequest['id_kab_kota'],
             'user_id' => $dataRequest['user_id'],
         ];
 
