@@ -11,9 +11,10 @@ class Panen extends Model
 
     protected $fillable = [
         'jumlah_panen',
+        'tanggal_tanam',
         'tanggal_panen',
         'status_panen',
-        'petani_id',
+        'kelompok_tani_id',
         'jenis_panen_id',
     ];
 }

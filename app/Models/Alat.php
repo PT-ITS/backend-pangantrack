@@ -13,6 +13,8 @@ class Alat extends Model
         'jenis_alat',
         'nama_alat',
         'deskripsi_alat',
+        'harga_sewa_alat',
+        'jumlah_alat',
         'foto_alat',
         'status',
         'penyedia_id',

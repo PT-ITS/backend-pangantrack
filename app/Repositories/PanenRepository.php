@@ -13,10 +13,10 @@ class PanenRepository
         $this->panenModel = $panenModel;
     }
 
-    public function listPanenByPetani($id)
+    public function listPanenByKelompokTani($id)
     {
         try {
-            $data = $this->panenModel->where('petani_id', $id)->get();
+            $data = $this->panenModel->where('kelompok_tani_id', $id)->get();
             return [
                 'id' => '1',
                 'data' => $data

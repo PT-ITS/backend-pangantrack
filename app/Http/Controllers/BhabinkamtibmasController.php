@@ -3,21 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\PenyediaService;
+use App\Services\BhabinkamtibmasService;
 
-class PenyediaController extends Controller
+class BhabinkamtibmasController extends Controller
 {
-    private $penyediaService;
+    private $bhabinkamtibmasService;
 
-    public function __construct(PenyediaService $penyediaService)
+    public function __construct(BhabinkamtibmasService $bhabinkamtibmasService)
     {
-        $this->penyediaService = $penyediaService;
+        $this->bhabinkamtibmasService = $bhabinkamtibmasService;
     }
 
-    public function detailPenyedia($id)
+    public function detailBhabinkamtibmas($id)
     {
         try {
-            $result = $this->penyediaService->detailPenyedia($id);
+            $result = $this->bhabinkamtibmasService->detailBhabinkamtibmas($id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],
@@ -30,10 +30,10 @@ class PenyediaController extends Controller
         }
     }
 
-    public function detailPenyediaByUserId($id)
+    public function detailBhabinkamtibmasByUserId($id)
     {
         try {
-            $result = $this->penyediaService->detailPenyediaByUserId($id);
+            $result = $this->bhabinkamtibmasService->detailBhabinkamtibmasByUserId($id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],
@@ -46,10 +46,10 @@ class PenyediaController extends Controller
         }
     }
 
-    public function listPenyedia()
+    public function listBhabinkamtibmas()
     {
         try {
-            $result = $this->penyediaService->listPenyedia();
+            $result = $this->bhabinkamtibmasService->listBhabinkamtibmas();
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],
@@ -62,19 +62,21 @@ class PenyediaController extends Controller
         }
     }
 
-    public function createPenyedia(Request $request)
+    public function createBhabinkamtibmas(Request $request)
     {
         try {
             $validateData = $request->validate([
                 'name' => 'required',
                 'email' => 'required|email|unique:users',
                 'password' => 'required',
-                'nama' => 'required',
-                'alamat' => 'required',
-                'hp' => 'required',
-                'wilayah' => 'required',
+                'nama_bhabin' => 'required',
+                'nrp_bhabin' => 'required',
+                'jabatan_bhabin' => 'nullable',
+                'tempat_dinas_bhabin' => 'nullable',
+                'alamat_bhabin' => 'required',
+                'hp_bhabin' => 'required',
             ]);
-            $result = $this->penyediaService->createPenyedia($validateData);
+            $result = $this->bhabinkamtibmasService->createBhabinkamtibmas($validateData);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],
@@ -87,19 +89,21 @@ class PenyediaController extends Controller
         }
     }
 
-    public function updatePenyedia(Request $request, $id)
+    public function updateBhabinkamtibmas(Request $request, $id)
     {
         try {
             $validateData = $request->validate([
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email,' . $id,
                 'password' => 'required',
-                'nama' => 'required',
-                'alamat' => 'required',
-                'hp' => 'required',
-                'wilayah' => 'required',
+                'nama_bhabin' => 'required',
+                'nrp_bhabin' => 'required',
+                'jabatan_bhabin' => 'nullable',
+                'tempat_dinas_bhabin' => 'nullable',
+                'alamat_bhabin' => 'required',
+                'hp_bhabin' => 'required',
             ]);
-            $result = $this->penyediaService->updatePenyedia($validateData, $id);
+            $result = $this->bhabinkamtibmasService->updateBhabinkamtibmas($validateData, $id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],
@@ -112,10 +116,10 @@ class PenyediaController extends Controller
         }
     }
 
-    public function deletePenyedia($id)
+    public function deleteBhabinkamtibmas($id)
     {
         try {
-            $result = $this->penyediaService->deletePenyedia($id);
+            $result = $this->bhabinkamtibmasService->deleteBhabinkamtibmas($id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],

@@ -14,10 +14,10 @@ class PanenController extends Controller
         $this->panenService = $panenService;
     }
 
-    public function listPanenByPetani($id)
+    public function listPanenByKelompokTani($id)
     {
         try {
-            $result = $this->panenService->listPanenByPetani($id);
+            $result = $this->panenService->listPanenByKelompokTani($id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],
@@ -34,10 +34,11 @@ class PanenController extends Controller
     {
         try {
             $validateData = $request->validate([
-                'jumlah_panen' => 'required',
-                'tanggal_panen' => 'required',
+                'jumlah_panen' => 'nullable',
+                'tanggal_tanam' => 'nullable',
+                'tanggal_panen' => 'nullable',
                 'status_panen' => 'required',
-                'petani_id' => 'required',
+                'kelompok_tani_id' => 'required',
                 'jenis_panen_id' => 'required'
             ]);
             $result = $this->panenService->createPanen($validateData);
@@ -57,10 +58,11 @@ class PanenController extends Controller
     {
         try {
             $validateData = $request->validate([
-                'jumlah_panen' => 'required',
-                'tanggal_panen' => 'required',
+                'jumlah_panen' => 'nullable',
+                'tanggal_tanam' => 'nullable',
+                'tanggal_panen' => 'nullable',
                 'status_panen' => 'required',
-                'petani_id' => 'required',
+                'kelompok_tani_id' => 'required',
                 'jenis_panen_id' => 'required'
             ]);
             $result = $this->panenService->updatePanen($validateData, $id);

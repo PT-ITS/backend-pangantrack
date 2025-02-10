@@ -6,11 +6,21 @@ use App\Repositories\PenyediaRepository;
 
 class PenyediaService
 {
-    private $penyediaRepository;
+    protected $penyediaRepository;
 
     public function __construct(PenyediaRepository $penyediaRepository)
     {
         $this->penyediaRepository = $penyediaRepository;
+    }
+
+    public function detailPenyedia($id)
+    {
+        return $this->penyediaRepository->detailPenyedia($id);
+    }
+
+    public function detailPenyediaByUserId($id)
+    {
+        return $this->penyediaRepository->detailPenyediaByUserId($id);
     }
 
     public function listPenyedia()
@@ -18,14 +28,14 @@ class PenyediaService
         return $this->penyediaRepository->listPenyedia();
     }
 
-    public function createPenyedia($requestData)
+    public function createPenyedia($data)
     {
-        return $this->penyediaRepository->createPenyedia($requestData);
+        return $this->penyediaRepository->createPenyedia($data);
     }
 
-    public function updatePenyedia($requestData, $id)
+    public function updatePenyedia($data, $id)
     {
-        return $this->penyediaRepository->updatePenyedia($requestData, $id);
+        return $this->penyediaRepository->updatePenyedia($data, $id);
     }
 
     public function deletePenyedia($id)

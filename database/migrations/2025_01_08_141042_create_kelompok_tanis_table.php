@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('alamat_ketua');
             $table->string('hp_ketua');
             $table->string('foto_kelompok');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade'); // id bhabin
             $table->timestamps();
         });
     }

@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('panens', function (Blueprint $table) {
             $table->id();
-            $table->string('jumlah_panen');
-            $table->date('tanggal_panen');
+            $table->string('jumlah_panen')->nullable();
+            $table->date('tanggal_tanam')->nullable();
+            $table->date('tanggal_panen')->nullable();
             $table->enum('status_panen', [
                 '0', // belum tanam
                 '1', // tanam
                 '2' //panen
             ]);
-            $table->foreignId('petani_id')->constrained('petanis')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('kelompok_tani_id')->constrained('kelompok_tanis')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('jenis_panen_id')->constrained('jenis_panens')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

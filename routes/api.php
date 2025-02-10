@@ -4,11 +4,14 @@ use App\Http\Controllers\AlatController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminPoldaController;
+use App\Http\Controllers\BhabinkamtibmasController;
 use App\Http\Controllers\KelompokTaniController;
 use App\Http\Controllers\PetaniController;
 use App\Http\Controllers\JenisPanenController;
 use App\Http\Controllers\PanenController;
 use App\Http\Controllers\PenyediaController;
+use App\Http\Controllers\SewaAlatController;
 
 Route::group([
     'prefix' => 'auth'
@@ -32,11 +35,57 @@ Route::group([
 });
 
 Route::group([
+    'prefix' => 'admin-polda'
+], function () {
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::get('detail/{id}', [AdminPoldaController::class, 'detailAdminPolda']);
+        Route::get('detail-by-user/{id}', [AdminPoldaController::class, 'detailAdminPoldaByUserId']);
+        Route::get('list', [AdminPoldaController::class, 'listAdminPolda']);
+        Route::post('create', [AdminPoldaController::class, 'createAdminPolda']);
+        Route::post('update/{id}', [AdminPoldaController::class, 'updateAdminPolda']);
+        Route::delete('delete/{id}', [AdminPoldaController::class, 'deleteAdminPolda']);
+    });
+});
+
+Route::group([
+    'prefix' => 'penyedia'
+], function () {
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::get('detail/{id}', [PenyediaController::class, 'detailPenyedia']);
+        Route::get('detail-by-user/{id}', [PenyediaController::class, 'detailPenyediaByUserId']);
+        Route::get('list', [PenyediaController::class, 'listPenyedia']);
+        Route::post('create', [PenyediaController::class, 'createPenyedia']);
+        Route::post('update/{id}', [PenyediaController::class, 'updatePenyedia']);
+        Route::delete('delete/{id}', [PenyediaController::class, 'deletePenyedia']);
+    });
+});
+
+Route::group([
+    'prefix' => 'bhabinkamtibmas'
+], function () {
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::get('detail/{id}', [BhabinkamtibmasController::class, 'detailBhabinkamtibmas']);
+        Route::get('detail-by-user/{id}', [BhabinkamtibmasController::class, 'detailBhabinkamtibmasByUserId']);
+        Route::get('list', [BhabinkamtibmasController::class, 'listBhabinkamtibmas']);
+        Route::post('create', [BhabinkamtibmasController::class, 'createBhabinkamtibmas']);
+        Route::post('update/{id}', [BhabinkamtibmasController::class, 'updateBhabinkamtibmas']);
+        Route::delete('delete/{id}', [BhabinkamtibmasController::class, 'deleteBhabinkamtibmas']);
+    });
+});
+
+Route::group([
     'prefix' => 'kelompok-tani'
 ], function () {
     Route::group([
         'middleware' => 'auth:api'
     ], function () {
+        Route::get('detail/{id}', [KelompokTaniController::class, 'detailKelompokTani']);
         Route::get('list', [KelompokTaniController::class, 'listKelompokTani']);
         Route::get('list-by-bhabinkamtibmas/{id}', [KelompokTaniController::class, 'listKelompokTaniByBhabinkamtibmas']);
         Route::post('create', [KelompokTaniController::class, 'createKelompokTani']);
@@ -77,23 +126,10 @@ Route::group([
     Route::group([
         'middleware' => 'auth:api'
     ], function () {
-        Route::get('list/{id}', [PanenController::class, 'listPanenByPetani']);
+        Route::get('list/{id}', [PanenController::class, 'listPanenByKelompokTani']);
         Route::post('create', [PanenController::class, 'createPanen']);
         Route::post('update/{id}', [PanenController::class, 'updatePanen']);
         Route::delete('delete/{id}', [PanenController::class, 'deletePanen']);
-    });
-});
-
-Route::group([
-    'prefix' => 'penyedia'
-], function () {
-    Route::group([
-        'middleware' => 'auth:api'
-    ], function () {
-        Route::get('list', [PenyediaController::class, 'listPenyedia']);
-        Route::post('create', [PenyediaController::class, 'createPenyedia']);
-        Route::post('update/{id}', [PenyediaController::class, 'updatePenyedia']);
-        Route::delete('delete/{id}', [PenyediaController::class, 'deletePenyedia']);
     });
 });
 
@@ -107,5 +143,21 @@ Route::group([
         Route::post('create', [AlatController::class, 'createAlat']);
         Route::post('update/{id}', [AlatController::class, 'updateAlat']);
         Route::delete('delete/{id}', [AlatController::class, 'deleteAlat']);
+    });
+});
+
+Route::group([
+    'prefix' => 'sewa-alsintan'
+], function () {
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::get('list/{id}', [SewaAlatController::class, 'listSewaAlatByKelompokTani']);
+        Route::get('list-by-bhabinkamtibmas/{id}', [SewaAlatController::class, 'listSewaAlatByBhabinkamtibmas']);
+        Route::post('create', [SewaAlatController::class, 'pengajuanSewaAlat']);
+        Route::post('update/{id}', [SewaAlatController::class, 'updateSewaAlat']);
+        Route::post('pengembalian/{id}', [SewaAlatController::class, 'pengajuanPengembalianSewaAlat']);
+        Route::post('status/{id}', [SewaAlatController::class, 'aksiPengajuanSewaAlat']);
+        Route::delete('delete/{id}', [SewaAlatController::class, 'deleteSewaAlat']);
     });
 });

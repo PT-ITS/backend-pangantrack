@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('penyedias', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->string('alamat');
+            $table->string('hp');
             $table->string('wilayah');
-            $table->foreignId('id_pj')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

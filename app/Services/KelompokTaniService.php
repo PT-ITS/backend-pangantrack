@@ -14,6 +14,11 @@ class KelompokTaniService
         $this->kelompokTaniRepository = $kelompokTaniRepository;
     }
 
+    public function detailKelompokTani($id)
+    {
+        return $this->kelompokTaniRepository->detailKelompokTani($id);
+    }
+
     public function listKelompokTani()
     {
         return $this->kelompokTaniRepository->listKelompokTani();

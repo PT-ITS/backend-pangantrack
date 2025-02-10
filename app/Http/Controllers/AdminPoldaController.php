@@ -3,21 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\PenyediaService;
+use App\Services\AdminPoldaService;
 
-class PenyediaController extends Controller
+class AdminPoldaController extends Controller
 {
-    private $penyediaService;
+    private $adminPoldaService;
 
-    public function __construct(PenyediaService $penyediaService)
+    public function __construct(AdminPoldaService $adminPoldaService)
     {
-        $this->penyediaService = $penyediaService;
+        $this->adminPoldaService = $adminPoldaService;
     }
 
-    public function detailPenyedia($id)
+    public function detailAdminPolda($id)
     {
         try {
-            $result = $this->penyediaService->detailPenyedia($id);
+            $result = $this->adminPoldaService->detailAdminPolda($id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],
@@ -30,10 +30,10 @@ class PenyediaController extends Controller
         }
     }
 
-    public function detailPenyediaByUserId($id)
+    public function detailAdminPoldaByUserId($id)
     {
         try {
-            $result = $this->penyediaService->detailPenyediaByUserId($id);
+            $result = $this->adminPoldaService->detailAdminPoldaByUserId($id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],
@@ -46,10 +46,10 @@ class PenyediaController extends Controller
         }
     }
 
-    public function listPenyedia()
+    public function listAdminPolda()
     {
         try {
-            $result = $this->penyediaService->listPenyedia();
+            $result = $this->adminPoldaService->listAdminPolda();
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],
@@ -62,19 +62,21 @@ class PenyediaController extends Controller
         }
     }
 
-    public function createPenyedia(Request $request)
+    public function createAdminPolda(Request $request)
     {
         try {
             $validateData = $request->validate([
                 'name' => 'required',
                 'email' => 'required|email|unique:users',
                 'password' => 'required',
-                'nama' => 'required',
-                'alamat' => 'required',
-                'hp' => 'required',
-                'wilayah' => 'required',
+                'nama_admin' => 'required',
+                'nrp_admin' => 'required',
+                'jabatan_admin' => 'nullable',
+                'tempat_dinas_admin' => 'nullable',
+                'alamat_admin' => 'required',
+                'hp_admin' => 'required',
             ]);
-            $result = $this->penyediaService->createPenyedia($validateData);
+            $result = $this->adminPoldaService->createAdminPolda($validateData);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],
@@ -87,19 +89,21 @@ class PenyediaController extends Controller
         }
     }
 
-    public function updatePenyedia(Request $request, $id)
+    public function updateAdminPolda(Request $request, $id)
     {
         try {
             $validateData = $request->validate([
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email,' . $id,
                 'password' => 'required',
-                'nama' => 'required',
-                'alamat' => 'required',
-                'hp' => 'required',
-                'wilayah' => 'required',
+                'nama_admin' => 'required',
+                'nrp_admin' => 'required',
+                'jabatan_admin' => 'nullable',
+                'tempat_dinas_admin' => 'nullable',
+                'alamat_admin' => 'required',
+                'hp_admin' => 'required',
             ]);
-            $result = $this->penyediaService->updatePenyedia($validateData, $id);
+            $result = $this->adminPoldaService->updateAdminPolda($validateData, $id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],
@@ -112,10 +116,10 @@ class PenyediaController extends Controller
         }
     }
 
-    public function deletePenyedia($id)
+    public function deleteAdminPolda($id)
     {
         try {
-            $result = $this->penyediaService->deletePenyedia($id);
+            $result = $this->adminPoldaService->deleteAdminPolda($id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],

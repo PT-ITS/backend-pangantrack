@@ -15,11 +15,14 @@ return new class extends Migration
             $table->id();
             $table->date('tanggal_sewa');
             $table->date('tanggal_kembali');
-            $table->enum('status',[
+            $table->string('jumlah_alat_disewa');
+            $table->enum('status', [
                 '0', // pengajuan
-                '1', // pengajuan di setujui
-                '2', // pengembalian
-                '3', // pengembalian di setujui
+                '1', // pengajuan disetujui
+                '2', // pengajuan ditolak
+                '3', // pengembalian
+                '4', // pengembalian disetujui
+                '5', // pengembalian ditolak
             ])->default('0');
             $table->foreignId('id_alat')->constrained('alats')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_kelompok')->constrained('kelompok_tanis')->onDelete('cascade')->onUpdate('cascade');
