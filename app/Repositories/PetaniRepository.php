@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Repositories;
 
 use App\Models\Petani;
 
@@ -15,7 +15,7 @@ class PetaniRepository
     public function listPetaniByKelompok($id)
     {
         try {
-            $dataPetani = $this->petaniModel->where('kelompok_tani_id', $id)->get();
+            $dataPetani = $this->petaniModel->where('kelompok_id', $id)->get();
             return [
                 'id' => '1',
                 'data' => $dataPetani
@@ -47,7 +47,7 @@ class PetaniRepository
     public function updatePetani($data, $id)
     {
         try {
-            $dataPetani = Petani::where('id', $id)->update($data);
+            $dataPetani = Petani::find($id)->update($data);
             return [
                 'id' => '1',
                 'data' => $dataPetani
@@ -56,6 +56,22 @@ class PetaniRepository
             return [
                 'id' => '0',
                 'data' => 'terjadi kesalahan dalam mengubah data petani'
+            ];
+        }
+    }
+
+    public function deletePetani($id)
+    {
+        try {
+            $dataPetani = Petani::find($id)->delete();
+            return [
+                'id' => '1',
+                'data' => $dataPetani
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'id' => '0',
+                'data' => 'terjadi kesalahan dalam menghapus data petani'
             ];
         }
     }

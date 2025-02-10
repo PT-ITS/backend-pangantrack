@@ -25,7 +25,7 @@ class JenisPanenController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam mengambil data jenis panen',
+                'data' => $th->getMessage(),
             ]);
         }
     }
@@ -34,7 +34,7 @@ class JenisPanenController extends Controller
     {
         try {
             $validateData = $request->validate([
-                'name_jenis_panen' => 'required',
+                'jenis_panen' => 'required',
                 'foto_jenis' => 'required',
             ]);
             $result = $this->jenisPanenService->createJenisPanen($validateData);
@@ -45,20 +45,19 @@ class JenisPanenController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam menambahkan data jenis panen',
+                'data' => $th->getMessage(),
             ]);
         }
     }
 
-    public function updateJenisPanen(Request $request)
+    public function updateJenisPanen(Request $request, $id)
     {
         try {
             $validateData = $request->validate([
-                'id_jenis_panen' => 'required',
-                'name_jenis_panen' => 'required',
-                'foto_jenis' => 'required',
+                'jenis_panen' => 'required',
+                'foto_jenis' => 'nullable',
             ]);
-            $result = $this->jenisPanenService->updateJenisPanen($validateData);
+            $result = $this->jenisPanenService->updateJenisPanen($validateData, $id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],
@@ -66,7 +65,7 @@ class JenisPanenController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam mengubah data jenis panen',
+                'data' => $th->getMessage(),
             ]);
         }
     }
@@ -82,7 +81,7 @@ class JenisPanenController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam menghapus data jenis panen',
+                'data' => $th->getMessage(),
             ]);
         }
     }

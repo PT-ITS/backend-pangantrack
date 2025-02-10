@@ -12,9 +12,25 @@ class KelompokTaniRepository
     }
 
     public function listKelompokTani()
-    {   
+    {
         try {
             $dataKelompokTani = KelompokTani::all();
+            return [
+                'id' => '1',
+                'data' => $dataKelompokTani
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'id' => '0',
+                'data' => 'gagal mengambil data kelompok tani'
+            ];
+        }
+    }
+
+    public function listKelompokTaniByBhabinkamtibmas($id)
+    {
+        try {
+            $dataKelompokTani = KelompokTani::where('user_id', $id)->get();
             return [
                 'id' => '1',
                 'data' => $dataKelompokTani
@@ -60,4 +76,20 @@ class KelompokTaniRepository
         }
     }
 
+    public function deleteKelompokTani($id)
+    {
+        try {
+            $dataKelompokTani = KelompokTani::find($id);
+            $dataKelompokTani->delete();
+            return [
+                'id' => '1',
+                'data' => 'berhasil menghapus data kelompok tani'
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'id' => '0',
+                'data' => 'terjadi kesalahan dalam menghapus data kelompok tani'
+            ];
+        }
+    }
 }

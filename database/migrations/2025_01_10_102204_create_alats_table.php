@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('alats', function (Blueprint $table) {
             $table->id();
             $table->string('jenis_alat');
-            $table->string('name_alat');
+            $table->string('nama_alat');
             $table->string('deskripsi_alat');
             $table->string('foto_alat');
-            $table->enum('status',[
+            $table->enum('status', [
                 '0', // tidak tersedia
                 '1', // tersedia
             ])->default('1');

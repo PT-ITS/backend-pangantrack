@@ -6,6 +6,11 @@ use App\Models\Alat;
 
 class AlatRepository
 {
+    public function find($id)
+    {
+        return Alat::find($id);
+    }
+
     public function listAlat()
     {
         try {
@@ -38,10 +43,10 @@ class AlatRepository
         }
     }
 
-    public function updateAlat($request)
+    public function updateAlat($request, $id)
     {
         try {
-            $dataAlat = Alat::find($request['id']);
+            $dataAlat = Alat::find($id);
             $dataAlat->update($request);
             return [
                 'id' => '1',

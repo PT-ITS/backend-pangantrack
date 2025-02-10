@@ -25,7 +25,7 @@ class PanenController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam mengambil data panen',
+                'data' => $th->getMessage(),
             ]);
         }
     }
@@ -48,7 +48,7 @@ class PanenController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam menambahkan data panen',
+                'data' => $th->getMessage(),
             ]);
         }
     }
@@ -71,7 +71,7 @@ class PanenController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam memperbarui data panen',
+                'data' => $th->getMessage(),
             ]);
         }
     }
@@ -87,7 +87,7 @@ class PanenController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam menghapus data panen',
+                'data' => $th->getMessage(),
             ]);
         }
     }

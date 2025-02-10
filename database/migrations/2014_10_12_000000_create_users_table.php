@@ -13,23 +13,16 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('image')->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('level', [
-                0, // superadmin
+                0, // admin
 
-                1, // admin subdis (pamsut, intelud, litpers)
-
-                2, // pic intelud
-
-                3, // admin lanud
-
-                4, // mitra subdis (intelud, litpers)
-
-                5, // user biasa
-            ])->default(5);
+                1, // bhabinkamtibmas
+            ])->default(1);
             $table->enum('status', [
                 0, // process
 
@@ -37,7 +30,6 @@ return new class extends Migration
 
                 2, // rejected
             ])->default(0);
-            $table->string('id_device')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
