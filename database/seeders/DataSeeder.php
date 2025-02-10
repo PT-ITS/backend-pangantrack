@@ -31,6 +31,7 @@ class DataSeeder extends Seeder
             'alamat_ketua' => 'Jl. Kurma',
             'hp_ketua' => '08123456789',
             'foto_kelompok' => 'kelompok_tani/default.jpg',
+            'id_kab_kota' => '3601',
             'user_id' => '4'
         ]);
         KelompokTani::create([
@@ -41,6 +42,7 @@ class DataSeeder extends Seeder
             'alamat_ketua' => 'Jl. Kurma',
             'hp_ketua' => '08123456789',
             'foto_kelompok' => 'kelompok_tani/default.jpg',
+            'id_kab_kota' => '3602',
             'user_id' => '4'
         ]);
         // Petani

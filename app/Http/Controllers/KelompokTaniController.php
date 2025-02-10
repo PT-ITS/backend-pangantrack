@@ -73,6 +73,7 @@ class KelompokTaniController extends Controller
                 'alamat_ketua' => 'required',
                 'hp_ketua' => 'required',
                 'foto_kelompok' => 'required',
+                'id_kab_kota' => 'required',
                 'user_id' => 'required',
             ]);
 

@@ -17,6 +17,7 @@ class KelompokTani extends Model
         'alamat_ketua',
         'hp_ketua',
         'foto_kelompok',
+        'id_kab_kota',
         'user_id',
     ];
 }
