@@ -85,6 +85,9 @@ Route::group([
     Route::group([
         'middleware' => 'auth:api'
     ], function () {
+        Route::get('detail-panen-by-kabkota/{id}', [KelompokTaniController::class, 'detailPanenByKabKota']);
+        Route::get('detail-panen', [KelompokTaniController::class, 'detailPanen']);
+        Route::get('detail-by-kabkota/{id}', [KelompokTaniController::class, 'detailKelompokTaniByKabKota']);
         Route::get('detail/{id}', [KelompokTaniController::class, 'detailKelompokTani']);
         Route::get('list', [KelompokTaniController::class, 'listKelompokTani']);
         Route::get('list-by-bhabinkamtibmas/{id}', [KelompokTaniController::class, 'listKelompokTaniByBhabinkamtibmas']);
