@@ -19,6 +19,11 @@ class KelompokTaniService
         return $this->kelompokTaniRepository->detailPanenByKabKota($id);
     }
 
+    public function detailPanenByBhabin($id)
+    {
+        return $this->kelompokTaniRepository->detailPanenByBhabin($id);
+    }
+
     public function detailPanen()
     {
         return $this->kelompokTaniRepository->detailPanen();

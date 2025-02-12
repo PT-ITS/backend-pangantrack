@@ -49,6 +49,59 @@ class KelompokTaniRepository
         }
     }
 
+    public function detailPanenByBhabin($id)
+    {
+        try {
+            // Get all unique id_kab_kota where user_id matches $id
+            $kabKotaIds = KelompokTani::where('user_id', $id)->distinct()->pluck('id_kab_kota');
+
+            if ($kabKotaIds->isEmpty()) {
+                return [
+                    'id' => '0',
+                    'data' => 'Data tidak ditemukan'
+                ];
+            }
+
+            $result = [];
+
+            foreach ($kabKotaIds as $id_kab_kota) {
+                // Get kelompok_tani IDs for this id_kab_kota where user_id matches $id
+                $kelompokTaniIds = KelompokTani::where('id_kab_kota', $id_kab_kota)
+                    ->where('user_id', $id)
+                    ->pluck('id');
+
+                // Get daftar_jenis_panen for this id_kab_kota
+                $daftarJenisPanen = JenisPanen::whereIn(
+                    'id',
+                    Panen::whereIn('kelompok_tani_id', $kelompokTaniIds)->pluck('jenis_panen_id')
+                )
+                    ->withSum(['panens' => function ($query) use ($kelompokTaniIds) {
+                        $query->whereIn('kelompok_tani_id', $kelompokTaniIds);
+                    }], 'jumlah_panen')
+                    ->get()
+                    ->map(function ($item) use ($id_kab_kota) {
+                        $item->id_kab_kota = $id_kab_kota; // Include id_kab_kota in each result
+                        return $item;
+                    });
+
+                $result[] = [
+                    'id_kab_kota' => $id_kab_kota,
+                    'daftar_jenis_panen' => $daftarJenisPanen
+                ];
+            }
+
+            return [
+                'id' => '1',
+                'data' => $result,
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'id' => '0',
+                'data' => $th->getMessage(),
+            ];
+        }
+    }
+
     public function detailPanen()
     {
         try {

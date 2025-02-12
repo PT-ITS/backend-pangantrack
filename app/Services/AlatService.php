@@ -53,7 +53,7 @@ class AlatService
             'harga_sewa_alat' => $dataRequest['harga_sewa_alat'],
             'jumlah_alat' => $dataRequest['jumlah_alat'],
             'foto_alat' => $fotoAlatTani,
-            'status' => $dataRequest['status'],
+            // 'status' => $dataRequest['status'],
             'penyedia_id' => $dataRequest['penyedia_id']
 
         ];

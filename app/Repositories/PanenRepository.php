@@ -16,7 +16,7 @@ class PanenRepository
     public function listPanenByKelompokTani($id)
     {
         try {
-            $data = $this->panenModel->where('kelompok_tani_id', $id)->get();
+            $data = $this->panenModel->where('kelompok_tani_id', $id)->with('jenisPanen')->get();
             return [
                 'id' => '1',
                 'data' => $data
