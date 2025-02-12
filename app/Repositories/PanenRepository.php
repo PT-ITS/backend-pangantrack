@@ -56,7 +56,7 @@ class PanenRepository
         } catch (\Throwable $th) {
             return [
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam memperbarui data panen'
+                'data' => $th->getMessage()
             ];
         }
     }

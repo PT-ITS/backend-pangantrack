@@ -58,12 +58,12 @@ class PanenController extends Controller
     {
         try {
             $validateData = $request->validate([
-                'jumlah_panen' => 'nullable',
-                'tanggal_tanam' => 'nullable',
-                'tanggal_panen' => 'nullable',
+                'jumlah_panen' => 'required',
+                // 'tanggal_tanam' => 'nullable',
+                'tanggal_panen' => 'required',
                 'status_panen' => 'required',
                 'kelompok_tani_id' => 'required',
-                'jenis_panen_id' => 'required'
+                // 'jenis_panen_id' => 'required'
             ]);
             $result = $this->panenService->updatePanen($validateData, $id);
             return response()->json([
