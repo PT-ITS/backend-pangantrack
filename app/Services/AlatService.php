@@ -20,6 +20,11 @@ class AlatService
         return $this->alatRepository->listAlat();
     }
 
+    public function listAlatByPenyedia($id)
+    {
+        return $this->alatRepository->listAlatByPenyedia($id);
+    }
+
     public function createAlat($dataRequest)
     {
         // Proses upload foto

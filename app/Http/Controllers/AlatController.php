@@ -30,6 +30,22 @@ class AlatController extends Controller
         }
     }
 
+    public function listAlatByPenyedia($id)
+    {
+        try {
+            $result = $this->alatService->listAlatByPenyedia($id);
+            return response()->json([
+                'id' => $result['id'],
+                'data' => $result['data'],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'id' => '0',
+                'data' => $th->getMessage(),
+            ]);
+        }
+    }
+
     public function createAlat(Request $request)
     {
         try {

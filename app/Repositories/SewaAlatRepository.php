@@ -6,6 +6,26 @@ use App\Models\SewaAlat;
 
 class SewaAlatRepository
 {
+    public function listSewaAlatByKelompokTani($id)
+    {
+        try {
+            $dataSewaAlat = SewaAlat::join('kelompok_tanis', 'sewa_alats.id_kelompok', '=', 'kelompok_tanis.id')
+                ->join('alats', 'sewa_alats.id_alat', '=', 'alats.id')
+                ->select('sewa_alats.*', 'alats.nama_alat', 'alats.foto_alat', 'kelompok_tanis.nama_kelompok')
+                ->where('id_kelompok', $id)
+                ->get();
+            return [
+                'id' => '1',
+                'data' => $dataSewaAlat
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'id' => '0',
+                'data' => 'terjadi kesalahan dalam mengambil data sewa alat'
+            ];
+        }
+    }
+
     public function listSewaAlatByBhabinkamtibmas($id)
     {
         try {
@@ -26,13 +46,13 @@ class SewaAlatRepository
         }
     }
 
-    public function listSewaAlatByKelompokTani($id)
+    public function listSewaAlatByPenyedia($id)
     {
         try {
             $dataSewaAlat = SewaAlat::join('kelompok_tanis', 'sewa_alats.id_kelompok', '=', 'kelompok_tanis.id')
                 ->join('alats', 'sewa_alats.id_alat', '=', 'alats.id')
                 ->select('sewa_alats.*', 'alats.nama_alat', 'alats.foto_alat', 'kelompok_tanis.nama_kelompok')
-                ->where('id_kelompok', $id)
+                ->where('penyedia_id', $id)
                 ->get();
             return [
                 'id' => '1',

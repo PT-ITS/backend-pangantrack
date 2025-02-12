@@ -16,14 +16,19 @@ class SewaAlatService
         $this->penyediaRepository = $penyediaRepository;
     }
 
+    public function listSewaAlatByKelompokTani($id)
+    {
+        return $this->sewaAlatRepository->listSewaAlatByKelompokTani($id);
+    }
+
     public function listSewaAlatByBhabinkamtibmas($id)
     {
         return $this->sewaAlatRepository->listSewaAlatByBhabinkamtibmas($id);
     }
 
-    public function listSewaAlatByKelompokTani($id)
+    public function listSewaAlatByPenyedia($id)
     {
-        return $this->sewaAlatRepository->listSewaAlatByKelompokTani($id);
+        return $this->sewaAlatRepository->listSewaAlatByPenyedia($id);
     }
 
     public function pengajuanSewaAlat($data)

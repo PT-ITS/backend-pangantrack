@@ -14,6 +14,22 @@ class SewaAlatController extends Controller
         $this->sewaAlatService = $sewaAlatService;
     }
 
+    public function listSewaAlatByKelompokTani($id)
+    {
+        try {
+            $result = $this->sewaAlatService->listSewaAlatByKelompokTani($id);
+            return response()->json([
+                'id' => $result['id'],
+                'data' => $result['data'],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'id' => '0',
+                'data' => 'terjadi kesalahan dalam mengambil data sewa alat',
+            ]);
+        }
+    }
+
     public function listSewaAlatByBhabinkamtibmas($id)
     {
         try {
@@ -30,10 +46,10 @@ class SewaAlatController extends Controller
         }
     }
 
-    public function listSewaAlatByKelompokTani($id)
+    public function listSewaAlatByPenyedia($id)
     {
         try {
-            $result = $this->sewaAlatService->listSewaAlatByKelompokTani($id);
+            $result = $this->sewaAlatService->listSewaAlatByPenyedia($id);
             return response()->json([
                 'id' => $result['id'],
                 'data' => $result['data'],

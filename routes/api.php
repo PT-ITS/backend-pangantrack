@@ -143,6 +143,7 @@ Route::group([
         'middleware' => 'auth:api'
     ], function () {
         Route::get('list', [AlatController::class, 'listAlat']);
+        Route::get('list-by-penyedia/{id}', [AlatController::class, 'listAlatByPenyedia']);
         Route::post('create', [AlatController::class, 'createAlat']);
         Route::post('update/{id}', [AlatController::class, 'updateAlat']);
         Route::delete('delete/{id}', [AlatController::class, 'deleteAlat']);
@@ -156,6 +157,7 @@ Route::group([
         'middleware' => 'auth:api'
     ], function () {
         Route::get('list/{id}', [SewaAlatController::class, 'listSewaAlatByKelompokTani']);
+        Route::get('list-by-penyedia/{id}', [SewaAlatController::class, 'listSewaAlatByPenyedia']);
         Route::get('list-by-bhabinkamtibmas/{id}', [SewaAlatController::class, 'listSewaAlatByBhabinkamtibmas']);
         Route::post('create', [SewaAlatController::class, 'pengajuanSewaAlat']);
         Route::post('update/{id}', [SewaAlatController::class, 'updateSewaAlat']);

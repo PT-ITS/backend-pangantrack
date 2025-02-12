@@ -27,6 +27,22 @@ class AlatRepository
         }
     }
 
+    public function listAlatByPenyedia($id)
+    {
+        try {
+            $dataAlat = Alat::where('penyedia_id', $id)->get();
+            return [
+                'id' => '1',
+                'data' => $dataAlat
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'id' => '0',
+                'data' => 'terjadi kesalahan dalam mengambil data alat'
+            ];
+        }
+    }
+
     public function createAlat($request)
     {
         try {
