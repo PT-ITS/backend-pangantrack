@@ -3,17 +3,16 @@
 namespace App\Services;
 
 use App\Repositories\SewaAlatRepository;
+use App\Repositories\AlatRepository;
 use App\Repositories\PenyediaRepository;
 
 class SewaAlatService
 {
     private $sewaAlatRepository;
-    private $penyediaRepository;
 
-    public function __construct(SewaAlatRepository $sewaAlatRepository, PenyediaRepository $penyediaRepository)
+    public function __construct(SewaAlatRepository $sewaAlatRepository)
     {
         $this->sewaAlatRepository = $sewaAlatRepository;
-        $this->penyediaRepository = $penyediaRepository;
     }
 
     public function listSewaAlatByKelompokTani($id)
@@ -61,18 +60,7 @@ class SewaAlatService
     public function aksiPengajuanSewaAlat($data, $id)
     {
         try {
-            $user = auth()->user()->id;
-            $alat = $this->sewaAlatRepository->find($id);
-            $penyedia = $this->penyediaRepository->find($alat->penyedia_id);
-
-            if ($user == $penyedia->user_id) {
-                return $this->sewaAlatRepository->aksiPengajuanSewaAlat($data, $id);
-            } else {
-                return [
-                    'id' => '0',
-                    'data' => 'anda bukan pemilik penyedia alat'
-                ];
-            }
+            return $this->sewaAlatRepository->aksiPengajuanSewaAlat($data, $id);
         } catch (\Throwable $th) {
             return [
                 'id' => '0',
