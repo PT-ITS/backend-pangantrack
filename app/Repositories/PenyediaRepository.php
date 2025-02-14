@@ -86,7 +86,7 @@ class PenyediaRepository
             $user = new User();
             $user->name = $data['name'];
             $user->email = $data['email'];
-            $user->level = '1';
+            $user->level = '2';
             $user->status = '1';
             $user->password = bcrypt($data['password']);
             $user->email_verified_at = date('Y-m-d H:i:s');
