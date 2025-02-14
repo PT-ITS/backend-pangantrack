@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminPoldaController;
 use App\Http\Controllers\BhabinkamtibmasController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KelompokTaniController;
 use App\Http\Controllers\PetaniController;
 use App\Http\Controllers\JenisPanenController;
@@ -31,6 +32,17 @@ Route::group([
             // api secure
 
         });
+    });
+});
+
+Route::group([
+    'prefix' => 'dashboard'
+], function () {
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::get('line-chart-panen-admin', [DashboardController::class, 'listLineChartPanenAdmin']);
+        // Route::get('pie-chart-panen-admin', [DashboardController::class, 'listPieChartPanenAdmin']);
     });
 });
 
