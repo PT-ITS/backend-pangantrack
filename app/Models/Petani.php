@@ -13,8 +13,6 @@ class Petani extends Model
         'nama_petani',
         'alamat_petani',
         'hp_petani',
-        'luas_lahan',
-        'koordinat_lahan',
         'kelompok_id',
     ];
 }

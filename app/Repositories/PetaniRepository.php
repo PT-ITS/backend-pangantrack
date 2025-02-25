@@ -39,7 +39,7 @@ class PetaniRepository
         } catch (\Throwable $th) {
             return [
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam menambahkan data petani'
+                'data' => 'terjadi kesalahan dalam menambahkan data petani' . $th
             ];
         }
     }

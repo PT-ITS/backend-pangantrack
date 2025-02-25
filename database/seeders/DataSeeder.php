@@ -58,16 +58,12 @@ class DataSeeder extends Seeder
             'nama_petani' => 'Zamorano',
             'alamat_petani' => 'Jl. Kurma',
             'hp_petani' => '08123456789',
-            'luas_lahan' => '10',
-            'koordinat_lahan' => '-7.0013231,113.8631895',
             'kelompok_id' => '1',
         ]);
         Petani::create([
             'nama_petani' => 'Jhezy',
             'alamat_petani' => 'Jl. Kurma',
             'hp_petani' => '08123456789',
-            'luas_lahan' => '10',
-            'koordinat_lahan' => '-7.0013231,113.8631895',
             'kelompok_id' => '2',
         ]);
         // Jenis Panen

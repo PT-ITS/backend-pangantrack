@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('nama_petani');
             $table->string('alamat_petani');
             $table->string('hp_petani');
-            $table->string('luas_lahan');
-            $table->string('koordinat_lahan')->nullable();
             $table->foreignId('kelompok_id')->constrained('kelompok_tanis')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
