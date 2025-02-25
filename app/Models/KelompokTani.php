@@ -18,6 +18,10 @@ class KelompokTani extends Model
         'hp_ketua',
         'foto_kelompok',
         'id_kab_kota',
+        'kecamatan',
+        'desa',
+        'luas_lahan',
+        'koodinator',
         'user_id',
     ];
 }

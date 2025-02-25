@@ -32,6 +32,10 @@ class DataSeeder extends Seeder
             'hp_ketua' => '08123456789',
             'foto_kelompok' => 'kelompok_tani/default.jpg',
             'id_kab_kota' => '3601',
+            'kecamatan' => 'Kecamatan',
+            'desa' => 'Desa',
+            'luas_lahan' => '10',
+            'koodinator' => 'Koodinator',
             'user_id' => '4'
         ]);
         KelompokTani::create([
@@ -43,6 +47,10 @@ class DataSeeder extends Seeder
             'hp_ketua' => '08123456789',
             'foto_kelompok' => 'kelompok_tani/default.jpg',
             'id_kab_kota' => '3602',
+            'kecamatan' => 'Kecamatan',
+            'desa' => 'Desa',
+            'luas_lahan' => '10',
+            'koodinator' => 'Koodinator',
             'user_id' => '4'
         ]);
         // Petani

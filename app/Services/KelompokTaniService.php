@@ -79,6 +79,10 @@ class KelompokTaniService
             'hp_ketua' => $dataRequest['hp_ketua'],
             'foto_kelompok' => $fotoKelompokName,
             'id_kab_kota' => $dataRequest['id_kab_kota'],
+            'kecamatan' => $dataRequest['kecamatan'],
+            'desa' => $dataRequest['desa'],
+            'luas_lahan' => $dataRequest['luas_lahan'],
+            'koodinator' => $dataRequest['koodinator'],
             'user_id' => $dataRequest['user_id'],
         ];
         return $this->kelompokTaniRepository->createKelompokTani($request);
@@ -121,6 +125,10 @@ class KelompokTaniService
             'hp_ketua' => $dataRequest['hp_ketua'],
             'foto_kelompok' => $fotoKelompokName,
             'id_kab_kota' => $dataRequest['id_kab_kota'],
+            'kecamatan' => $dataRequest['kecamatan'],
+            'desa' => $dataRequest['desa'],
+            'luas_lahan' => $dataRequest['luas_lahan'],
+            'koodinator' => $dataRequest['koodinator'],
             'user_id' => $dataRequest['user_id'],
         ];
 

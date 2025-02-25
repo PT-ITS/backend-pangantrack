@@ -138,6 +138,10 @@ class KelompokTaniController extends Controller
                 'hp_ketua' => 'required',
                 'foto_kelompok' => 'required',
                 'id_kab_kota' => 'required',
+                'kecamatan' => 'required',
+                'desa' => 'required',
+                'luas_lahan' => 'required',
+                'koodinator' => 'required',
                 'user_id' => 'required',
             ]);
 
@@ -166,6 +170,10 @@ class KelompokTaniController extends Controller
                 'hp_ketua' => 'required',
                 'foto_kelompok' => 'nullable',
                 'id_kab_kota' => 'required',
+                'kecamatan' => 'required',
+                'desa' => 'required',
+                'luas_lahan' => 'required',
+                'koodinator' => 'required',
                 'user_id' => 'required',
             ]);
 

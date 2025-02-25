@@ -24,6 +24,10 @@ return new class extends Migration
             $table->string('hp_ketua');
             $table->string('foto_kelompok');
             $table->string('id_kab_kota');
+            $table->string('kecamatan');
+            $table->string('desa');
+            $table->string('luas_lahan');
+            $table->string('koodinator');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade'); // id bhabin
             $table->timestamps();
         });
