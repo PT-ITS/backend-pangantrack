@@ -198,7 +198,7 @@ class KelompokTaniRepository
                 // Add data to result array
                 $result[] = [
                     "kelompok_tani" => $kelompok,
-                    "jumlah_petani" => $jumlahPetani,
+                    "jumlah_petani" => $kelompok->jumlah_anggota,
                     "jumlah_jenis_panen" => $jumlahJenisPanen,
                     "daftar_jenis_panen" => $daftarJenisPanen,
                     "jumlah_panen" => $jumlahPanen,
@@ -259,7 +259,7 @@ class KelompokTaniRepository
                 'id' => '1',
                 'data' => [
                     "kelompok_tani" => $dataKelompokTani,
-                    "jumlah_petani" => $jumlahPetani,
+                    "jumlah_petani" => $dataKelompokTani->jumlah_anggota,
                     "jumlah_jenis_panen" => $jumlahJenisPanen,
                     "daftar_jenis_panen" => $daftarJenisPanen,
                     "jumlah_panen" => $jumlahPanen,
