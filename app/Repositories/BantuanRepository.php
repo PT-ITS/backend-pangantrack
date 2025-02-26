@@ -60,6 +60,7 @@ class BantuanRepository
             $bantuan->id_kab_kota = $data['id_kab_kota'];
             $bantuan->jenis_bantuan = $data['jenis_bantuan'];
             $bantuan->jumlah_bantuan = $data['jumlah_bantuan'];
+            $bantuan->satuan_bantuan = $data['satuan_bantuan'];
             $bantuan->tahun = $data['tahun'];
             $bantuan->keterangan = $data['keterangan'];
             $bantuan->user_id = $data['user_id'];
@@ -98,6 +99,7 @@ class BantuanRepository
             $bantuan->id_kab_kota = $data['id_kab_kota'];
             $bantuan->jenis_bantuan = $data['jenis_bantuan'];
             $bantuan->jumlah_bantuan = $data['jumlah_bantuan'];
+            $bantuan->satuan_bantuan = $data['satuan_bantuan'];
             $bantuan->tahun = $data['tahun'];
             $bantuan->keterangan = $data['keterangan'];
             $bantuan->save();

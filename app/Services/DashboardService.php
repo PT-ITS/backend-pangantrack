@@ -13,15 +13,33 @@ class DashboardService
         $this->dashboardRepository = $dashboardRepository;
     }
 
-    public function listLineChartPanenAdmin()
+    public function listAvailableYearsPanen()
+    {
+        return $this->dashboardRepository->listAvailableYearsPanen();
+    }
+
+    public function listAvailableYearsBantuan()
+    {
+        return $this->dashboardRepository->listAvailableYearsBantuan();
+    }
+
+    public function listLineChartPanenAdmin($month = null, $year = null)
     {
         try {
-            $response = $this->dashboardRepository->listLineChartPanenAdmin();
+            return $this->dashboardRepository->listLineChartPanenAdmin($month, $year);
+        } catch (\Exception $e) {
+            return [
+                "id" => '0',
+                "statusCode" => 401,
+                "data" => $e->getMessage(),
+            ];
+        }
+    }
 
-            // Convert the JSON response to an array
-            $responseArray = $response->getData(true); // getData(true) converts the response to an array
-
-            return $responseArray;
+    public function listLineChartBantuanAdmin($year = null)
+    {
+        try {
+            return $this->dashboardRepository->listLineChartBantuanAdmin($year);
         } catch (\Exception $e) {
             return [
                 "id" => '0',

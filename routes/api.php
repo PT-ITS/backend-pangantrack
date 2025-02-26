@@ -42,7 +42,10 @@ Route::group([
     Route::group([
         'middleware' => 'auth:api'
     ], function () {
+        Route::get('available-years-panen', [DashboardController::class, 'listAvailableYearsPanen']);
+        Route::get('available-years-bantuan', [DashboardController::class, 'listAvailableYearsBantuan']);
         Route::get('line-chart-panen-admin', [DashboardController::class, 'listLineChartPanenAdmin']);
+        Route::get('line-chart-bantuan-admin', [DashboardController::class, 'listLineChartBantuanAdmin']);
         // Route::get('pie-chart-panen-admin', [DashboardController::class, 'listPieChartPanenAdmin']);
     });
 });
