@@ -17,6 +17,7 @@ class KelompokTani extends Model
         'alamat_ketua',
         'hp_ketua',
         'foto_kelompok',
+        'jumlah_anggota',
         'id_kab_kota',
         'kecamatan',
         'desa',
