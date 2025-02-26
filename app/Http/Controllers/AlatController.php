@@ -53,11 +53,11 @@ class AlatController extends Controller
                 'jenis_alat' => 'required',
                 'nama_alat' => 'required',
                 'deskripsi_alat' => 'required',
-                'harga_sewa_alat' => 'required',
+                // 'harga_sewa_alat' => 'required',
                 'jumlah_alat' => 'required',
                 'foto_alat' => 'required',
                 // 'status' => 'required',
-                // 'penyedia_id' => 'required',
+                'pemilik_id' => 'required',
             ]);
             $validateData['penyedia_id'] = auth()->user()->id;
             $result = $this->alatService->createAlat($validateData);
@@ -80,11 +80,11 @@ class AlatController extends Controller
                 'jenis_alat' => 'required',
                 'nama_alat' => 'required',
                 'deskripsi_alat' => 'required',
-                'harga_sewa_alat' => 'required',
+                // 'harga_sewa_alat' => 'required',
                 'jumlah_alat' => 'required',
                 'foto_alat' => 'nullable',
                 'status' => 'required',
-                // 'penyedia_id' => 'required',
+                'pemilik_id' => 'required',
             ]);
             $validateData['penyedia_id'] = auth()->user()->id;
             $result = $this->alatService->updateAlat($validateData, $id);

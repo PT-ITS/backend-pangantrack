@@ -16,14 +16,15 @@ return new class extends Migration
             $table->string('jenis_alat');
             $table->string('nama_alat');
             $table->string('deskripsi_alat');
-            $table->string('harga_sewa_alat');
+            // $table->string('harga_sewa_alat');
             $table->string('jumlah_alat');
             $table->string('foto_alat');
             $table->enum('status', [
                 '0', // tidak tersedia
                 '1', // tersedia
             ])->default('1');
-            $table->foreignId('penyedia_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('pemilik_id')->constrained('kelompok_tanis')->onDelete('cascade')->onUpdate('cascade'); // pemilik alsintan / kelompok tani
+            $table->foreignId('penyedia_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade'); // koordinator alsintan / admin / bhabin
             $table->timestamps();
         });
     }

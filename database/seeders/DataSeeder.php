@@ -93,20 +93,22 @@ class DataSeeder extends Seeder
             'jenis_alat' => 'Traktor',
             'nama_alat' => 'Traktor Kubota',
             'deskripsi_alat' => 'Untuk membajak sawah',
-            'harga_sewa_alat' => '500000',
+            // 'harga_sewa_alat' => '500000',
             'jumlah_alat' => '1',
             'foto_alat' => 'alat_tani/default.jpeg',
             'status' => '1',
+            'pemilik_id' => '1',
             'penyedia_id' => '3',
         ]);
         Alat::create([
             'jenis_alat' => 'Mower',
             'nama_alat' => 'LCPOWER Komodo Lawn Mower 2.0',
             'deskripsi_alat' => 'Untuk memotong rumput',
-            'harga_sewa_alat' => '300000',
+            // 'harga_sewa_alat' => '300000',
             'jumlah_alat' => '3',
             'foto_alat' => 'alat_tani/default.jpeg',
             'status' => '1',
+            'pemilik_id' => '2',
             'penyedia_id' => '3',
         ]);
     }
