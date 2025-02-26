@@ -49,6 +49,11 @@ class KelompokTaniService
         return $this->kelompokTaniRepository->listKelompokTaniByBhabinkamtibmas($id);
     }
 
+    public function listKelompokTaniByKabKota($id)
+    {
+        return $this->kelompokTaniRepository->listKelompokTaniByKabKota($id);
+    }
+
     public function createKelompokTani($dataRequest)
     {
         // Proses upload foto

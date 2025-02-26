@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminPoldaController;
+use App\Http\Controllers\BantuanController;
 use App\Http\Controllers\BhabinkamtibmasController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KelompokTaniController;
@@ -104,6 +105,7 @@ Route::group([
         Route::get('detail/{id}', [KelompokTaniController::class, 'detailKelompokTani']);
         Route::get('list', [KelompokTaniController::class, 'listKelompokTani']);
         Route::get('list-by-bhabinkamtibmas/{id}', [KelompokTaniController::class, 'listKelompokTaniByBhabinkamtibmas']);
+        Route::get('list-by-kab-kota/{id}', [KelompokTaniController::class, 'listKelompokTaniByKabKota']);
         Route::post('create', [KelompokTaniController::class, 'createKelompokTani']);
         Route::post('update/{id}', [KelompokTaniController::class, 'updateKelompokTani']);
         Route::delete('delete/{id}', [KelompokTaniController::class, 'deleteKelompokTani']);
@@ -177,5 +179,19 @@ Route::group([
         Route::post('pengembalian/{id}', [SewaAlatController::class, 'pengajuanPengembalianSewaAlat']);
         Route::post('status/{id}', [SewaAlatController::class, 'aksiPengajuanSewaAlat']);
         Route::delete('delete/{id}', [SewaAlatController::class, 'deleteSewaAlat']);
+    });
+});
+
+Route::group([
+    'prefix' => 'bantuan'
+], function () {
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::get('detail/{id}', [BantuanController::class, 'detailBantuan']);
+        Route::get('list', [BantuanController::class, 'listBantuan']);
+        Route::post('create', [BantuanController::class, 'createBantuan']);
+        Route::post('update/{id}', [BantuanController::class, 'updateBantuan']);
+        Route::delete('delete/{id}', [BantuanController::class, 'deleteBantuan']);
     });
 });

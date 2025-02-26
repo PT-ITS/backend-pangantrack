@@ -312,6 +312,22 @@ class KelompokTaniRepository
         }
     }
 
+    public function listKelompokTaniByKabKota($id)
+    {
+        try {
+            $dataKelompokTani = KelompokTani::where('id_kab_kota', $id)->get();
+            return [
+                'id' => '1',
+                'data' => $dataKelompokTani
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'id' => '0',
+                'data' => 'gagal mengambil data kelompok tani'
+            ];
+        }
+    }
+
     public function createKelompokTani($dataRequest)
     {
         try {

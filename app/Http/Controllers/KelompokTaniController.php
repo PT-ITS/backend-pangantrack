@@ -126,6 +126,22 @@ class KelompokTaniController extends Controller
         }
     }
 
+    public function listKelompokTaniByKabKota($id)
+    {
+        try {
+            $result = $this->kelompokTaniService->listKelompokTaniByKabKota($id);
+            return response()->json([
+                'id' => $result['id'],
+                'data' => $result['data'],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'id' => '0',
+                'data' => $th->getMessage(),
+            ]);
+        }
+    }
+
     public function createKelompokTani(Request $request)
     {
         try {
