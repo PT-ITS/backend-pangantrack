@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('alamat_ketua');
             $table->string('hp_ketua');
             $table->string('foto_kelompok');
+            $table->string('jumlah_anggota');
             $table->string('id_kab_kota');
             $table->string('kecamatan');
             $table->string('desa');
