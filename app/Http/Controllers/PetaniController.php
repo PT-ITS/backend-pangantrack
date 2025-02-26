@@ -37,8 +37,6 @@ class PetaniController extends Controller
                 'nama_petani' => 'required',
                 'alamat_petani' => 'required',
                 'hp_petani' => 'required',
-                'luas_lahan' => 'required',
-                'koordinat_lahan' => 'required',
                 'kelompok_id' => 'required',
             ]);
             $result = $this->petaniService->createPetani($validateData);
@@ -61,8 +59,6 @@ class PetaniController extends Controller
                 'nama_petani' => 'required',
                 'alamat_petani' => 'required',
                 'hp_petani' => 'required',
-                'luas_lahan' => 'required',
-                'koordinat_lahan' => 'required',
                 'kelompok_id' => 'required',
             ]);
             $result = $this->petaniService->updatePetani($validateData, $id);
