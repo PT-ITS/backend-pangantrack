@@ -55,8 +55,9 @@ class BantuanController extends Controller
                 'jenis_bantuan' => 'required',
                 'jumlah_bantuan' => 'required',
                 'satuan_bantuan' => 'required',
+                'bulan' => 'required',
                 'tahun' => 'required',
-                'keterangan' => 'required',
+                // 'keterangan' => 'required',
                 'kelompok_tani_id' => 'required|array',
                 'kelompok_tani_id.*' => 'exists:kelompok_tanis,id',
             ]);
@@ -83,8 +84,9 @@ class BantuanController extends Controller
                 'jenis_bantuan' => 'required',
                 'jumlah_bantuan' => 'required',
                 'satuan_bantuan' => 'required',
+                'bulan' => 'required',
                 'tahun' => 'required',
-                'keterangan' => 'required',
+                // 'keterangan' => 'required',
                 'kelompok_tani_id' => 'required|array',
                 'kelompok_tani_id.*' => 'exists:kelompok_tanis,id',
             ]);

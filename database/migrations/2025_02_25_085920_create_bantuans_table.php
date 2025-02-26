@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('jenis_bantuan');
             $table->string('jumlah_bantuan');
             $table->string('satuan_bantuan');
+            $table->string('bulan');
             $table->string('tahun');
-            $table->string('keterangan');
+            // $table->string('keterangan');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade'); // id admin yg memberikan bantuan
             $table->timestamps();
         });

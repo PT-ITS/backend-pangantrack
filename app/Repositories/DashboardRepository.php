@@ -138,7 +138,7 @@ class DashboardRepository
         }
     }
 
-    public function listLineChartBantuanAdmin($year = null)
+    public function listLineChartBantuanAdmin($month = null, $year = null)
     {
         try {
             $query = Bantuan::select(
@@ -149,6 +149,9 @@ class DashboardRepository
             )
                 ->groupBy('id_kab_kota', 'jenis_bantuan', 'satuan_bantuan');
 
+            if ($month) {
+                $query->where('bulan', $month);
+            }
             if ($year) {
                 $query->where('tahun', $year);
             }

@@ -87,9 +87,10 @@ class DashboardController extends Controller
     public function listLineChartBantuanAdmin(Request $request)
     {
         try {
+            $month = $request->query('month');
             $year = $request->query('year');
 
-            $result = $this->dashboardService->listLineChartBantuanAdmin($year);
+            $result = $this->dashboardService->listLineChartBantuanAdmin($month, $year);
 
             return response()->json(
                 [

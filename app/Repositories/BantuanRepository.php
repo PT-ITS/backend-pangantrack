@@ -61,8 +61,9 @@ class BantuanRepository
             $bantuan->jenis_bantuan = $data['jenis_bantuan'];
             $bantuan->jumlah_bantuan = $data['jumlah_bantuan'];
             $bantuan->satuan_bantuan = $data['satuan_bantuan'];
+            $bantuan->bulan = $data['bulan'];
             $bantuan->tahun = $data['tahun'];
-            $bantuan->keterangan = $data['keterangan'];
+            // $bantuan->keterangan = $data['keterangan'];
             $bantuan->user_id = $data['user_id'];
             $bantuan->save();
 
@@ -100,8 +101,9 @@ class BantuanRepository
             $bantuan->jenis_bantuan = $data['jenis_bantuan'];
             $bantuan->jumlah_bantuan = $data['jumlah_bantuan'];
             $bantuan->satuan_bantuan = $data['satuan_bantuan'];
+            $bantuan->bulan = $data['bulan'];
             $bantuan->tahun = $data['tahun'];
-            $bantuan->keterangan = $data['keterangan'];
+            // $bantuan->keterangan = $data['keterangan'];
             $bantuan->save();
 
             if (isset($data['kelompok_tani_id']) && is_array($data['kelompok_tani_id'])) {

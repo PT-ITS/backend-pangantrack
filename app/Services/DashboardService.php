@@ -36,10 +36,10 @@ class DashboardService
         }
     }
 
-    public function listLineChartBantuanAdmin($year = null)
+    public function listLineChartBantuanAdmin($month = null, $year = null)
     {
         try {
-            return $this->dashboardRepository->listLineChartBantuanAdmin($year);
+            return $this->dashboardRepository->listLineChartBantuanAdmin($month, $year);
         } catch (\Exception $e) {
             return [
                 "id" => '0',

@@ -117,19 +117,20 @@ class DataSeeder extends Seeder
             'tanggal_panen' => '2025-02-02',
             'status_panen' => '2',
             'kelompok_tani_id' => '1',
-            'jenis_panen_id' => '1',
+            'jenis_panen_id' => '2',
         ]);
         Panen::create([
             'tanggal_tanam' => '2025-02-02',
             'status_panen' => '1',
             'kelompok_tani_id' => '2',
-            'jenis_panen_id' => '1',
+            'jenis_panen_id' => '2',
         ]);
         // Alsintan
         Alat::create([
             'jenis_alat' => 'Traktor',
             'nama_alat' => 'Traktor Kubota',
             'deskripsi_alat' => 'Untuk membajak sawah',
+            'lokasi_awal_alat' => 'Jl. Kurma',
             // 'harga_sewa_alat' => '500000',
             'jumlah_alat' => '1',
             'foto_alat' => 'alat_tani/default.jpeg',
@@ -141,6 +142,7 @@ class DataSeeder extends Seeder
             'jenis_alat' => 'Mower',
             'nama_alat' => 'LCPOWER Komodo Lawn Mower 2.0',
             'deskripsi_alat' => 'Untuk memotong rumput',
+            'lokasi_awal_alat' => 'Jl. Kurma',
             // 'harga_sewa_alat' => '300000',
             'jumlah_alat' => '3',
             'foto_alat' => 'alat_tani/default.jpeg',
@@ -154,8 +156,9 @@ class DataSeeder extends Seeder
             'jenis_bantuan' => 'Bibit Jagung',
             'jumlah_bantuan' => '4',
             'satuan_bantuan' => 'ton',
+            'bulan' => '2',
             'tahun' => '2025',
-            'keterangan' => 'Bantuan dari Dinas Pertanian dan Ketahanan Pangan',
+            // 'keterangan' => 'Bantuan dari Dinas Pertanian dan Ketahanan Pangan',
             'user_id' => '1'
         ]);
         BantuanKelompokTani::create([

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('jenis_alat');
             $table->string('nama_alat');
             $table->string('deskripsi_alat');
+            $table->string('lokasi_awal_alat');
             // $table->string('harga_sewa_alat');
             $table->string('jumlah_alat');
             $table->string('foto_alat');
