@@ -157,7 +157,7 @@ class KelompokTaniController extends Controller
                 'kecamatan' => 'required',
                 'desa' => 'required',
                 'luas_lahan' => 'required',
-                'koodinator' => 'required',
+                'koordinat' => 'required',
                 'user_id' => 'required',
             ]);
 
@@ -189,7 +189,7 @@ class KelompokTaniController extends Controller
                 'kecamatan' => 'required',
                 'desa' => 'required',
                 'luas_lahan' => 'required',
-                'koodinator' => 'required',
+                'koordinat' => 'required',
                 'user_id' => 'required',
             ]);
 

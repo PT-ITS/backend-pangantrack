@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('kecamatan');
             $table->string('desa');
             $table->string('luas_lahan');
-            $table->string('koodinator');
+            $table->string('koordinat');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade'); // id bhabin
             $table->timestamps();
         });

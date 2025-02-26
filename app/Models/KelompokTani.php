@@ -21,7 +21,7 @@ class KelompokTani extends Model
         'kecamatan',
         'desa',
         'luas_lahan',
-        'koodinator',
+        'koordinat',
         'user_id',
     ];
 }

@@ -195,9 +195,6 @@ class KelompokTaniRepository
                 // Sum jumlah_panen from Panen
                 $jumlahPanen = Panen::where('kelompok_tani_id', $kelompokId)->sum('jumlah_panen');
 
-                // Sum total_luas_lahan from Petani
-                $totalLuasLahan = Petani::where('kelompok_id', $kelompokId)->sum('luas_lahan');
-
                 // Add data to result array
                 $result[] = [
                     "kelompok_tani" => $kelompok,
@@ -205,7 +202,7 @@ class KelompokTaniRepository
                     "jumlah_jenis_panen" => $jumlahJenisPanen,
                     "daftar_jenis_panen" => $daftarJenisPanen,
                     "jumlah_panen" => $jumlahPanen,
-                    "total_luas_lahan" => $totalLuasLahan,
+                    "total_luas_lahan" => $kelompok->luas_lahan,
                 ];
             }
 
@@ -258,9 +255,6 @@ class KelompokTaniRepository
             // Sum jumlah_panen from Panen
             $jumlahPanen = Panen::where('kelompok_tani_id', $id)->sum('jumlah_panen');
 
-            // Sum total_luas_lahan from Petani
-            $totalLuasLahan = Petani::where('kelompok_id', $id)->sum('luas_lahan');
-
             return [
                 'id' => '1',
                 'data' => [
@@ -269,7 +263,7 @@ class KelompokTaniRepository
                     "jumlah_jenis_panen" => $jumlahJenisPanen,
                     "daftar_jenis_panen" => $daftarJenisPanen,
                     "jumlah_panen" => $jumlahPanen,
-                    "total_luas_lahan" => $totalLuasLahan,
+                    "total_luas_lahan" => $dataKelompokTani->luas_lahan,
                 ],
             ];
         } catch (\Throwable $th) {
