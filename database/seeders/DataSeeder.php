@@ -36,7 +36,7 @@ class DataSeeder extends Seeder
             'kecamatan' => 'Kecamatan',
             'desa' => 'Desa',
             'luas_lahan' => '10',
-            'koodinator' => 'Koodinator',
+            'koordinat' => '-6.1171233,106.1538912',
             'user_id' => '4'
         ]);
         KelompokTani::create([
@@ -52,7 +52,7 @@ class DataSeeder extends Seeder
             'kecamatan' => 'Kecamatan',
             'desa' => 'Desa',
             'luas_lahan' => '10',
-            'koodinator' => 'Koodinator',
+            'koordinat' => '-6.1171233,106.1538912',
             'user_id' => '4'
         ]);
         // Petani

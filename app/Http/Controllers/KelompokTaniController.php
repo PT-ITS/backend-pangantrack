@@ -126,6 +126,22 @@ class KelompokTaniController extends Controller
         }
     }
 
+    public function listKelompokTaniByKabKota($id)
+    {
+        try {
+            $result = $this->kelompokTaniService->listKelompokTaniByKabKota($id);
+            return response()->json([
+                'id' => $result['id'],
+                'data' => $result['data'],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'id' => '0',
+                'data' => $th->getMessage(),
+            ]);
+        }
+    }
+
     public function createKelompokTani(Request $request)
     {
         try {
@@ -142,7 +158,7 @@ class KelompokTaniController extends Controller
                 'kecamatan' => 'required',
                 'desa' => 'required',
                 'luas_lahan' => 'required',
-                'koodinator' => 'required',
+                'koordinat' => 'required',
                 'user_id' => 'required',
             ]);
 
@@ -175,7 +191,7 @@ class KelompokTaniController extends Controller
                 'kecamatan' => 'required',
                 'desa' => 'required',
                 'luas_lahan' => 'required',
-                'koodinator' => 'required',
+                'koordinat' => 'required',
                 'user_id' => 'required',
             ]);
 

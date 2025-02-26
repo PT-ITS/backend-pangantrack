@@ -49,6 +49,11 @@ class KelompokTaniService
         return $this->kelompokTaniRepository->listKelompokTaniByBhabinkamtibmas($id);
     }
 
+    public function listKelompokTaniByKabKota($id)
+    {
+        return $this->kelompokTaniRepository->listKelompokTaniByKabKota($id);
+    }
+
     public function createKelompokTani($dataRequest)
     {
         // Proses upload foto
@@ -83,7 +88,7 @@ class KelompokTaniService
             'kecamatan' => $dataRequest['kecamatan'],
             'desa' => $dataRequest['desa'],
             'luas_lahan' => $dataRequest['luas_lahan'],
-            'koodinator' => $dataRequest['koodinator'],
+            'koordinat' => $dataRequest['koordinat'],
             'user_id' => $dataRequest['user_id'],
         ];
         return $this->kelompokTaniRepository->createKelompokTani($request);
@@ -130,7 +135,7 @@ class KelompokTaniService
             'kecamatan' => $dataRequest['kecamatan'],
             'desa' => $dataRequest['desa'],
             'luas_lahan' => $dataRequest['luas_lahan'],
-            'koodinator' => $dataRequest['koodinator'],
+            'koordinat' => $dataRequest['koordinat'],
             'user_id' => $dataRequest['user_id'],
         ];
 
