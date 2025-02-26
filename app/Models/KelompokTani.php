@@ -25,4 +25,9 @@ class KelompokTani extends Model
         'koordinat',
         'user_id',
     ];
+
+    public function panens()
+    {
+        return $this->hasMany(Panen::class, 'kelompok_tani_id');
+    }
 }

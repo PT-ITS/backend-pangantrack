@@ -71,10 +71,45 @@ class DataSeeder extends Seeder
             'kelompok_id' => '2',
         ]);
         // Jenis Panen
-        JenisPanen::create([
-            'jenis_panen' => 'Padi',
-            'foto_jenis' => 'jenis_panen/default.jpeg',
-        ]);
+        $jenisPanenList = [
+            'Padi',
+            'Jagung',
+            'Kedelai',
+            'Kacang Tanah',
+            'Singkong',
+            'Ubi Jalar',
+            'Tebu',
+            'Kelapa Sawit',
+            'Kopi',
+            'Kakao',
+            'Teh',
+            'Cengkeh',
+            'Vanili',
+            'Lada',
+            'Cabai',
+            'Tomat',
+            'Bawang Merah',
+            'Bawang Putih',
+            'Wortel',
+            'Kubis',
+            'Timun',
+            'Terong',
+            'Semangka',
+            'Melon',
+            'Durian',
+            'Mangga',
+            'Nanas',
+            'Pisang',
+            'Rambutan',
+            'Salak'
+        ];
+
+        foreach ($jenisPanenList as $jenis) {
+            JenisPanen::create([
+                'jenis_panen' => $jenis,
+                'foto_jenis' => 'jenis_panen/default.jpeg',
+            ]);
+        }
         // Panen
         Panen::create([
             'jumlah_panen' => '10',
