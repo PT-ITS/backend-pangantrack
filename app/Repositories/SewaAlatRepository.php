@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Alat;
 use App\Models\SewaAlat;
 
 class SewaAlatRepository
@@ -9,10 +10,19 @@ class SewaAlatRepository
     public function listSewaAlatByKelompokTani($id)
     {
         try {
-            $dataSewaAlat = SewaAlat::join('kelompok_tanis', 'sewa_alats.id_kelompok', '=', 'kelompok_tanis.id')
+            $dataSewaAlat = SewaAlat::join('kelompok_tanis as peminjam', 'sewa_alats.id_kelompok', '=', 'peminjam.id')
                 ->join('alats', 'sewa_alats.id_alat', '=', 'alats.id')
-                ->select('sewa_alats.*', 'alats.nama_alat', 'alats.foto_alat', 'kelompok_tanis.nama_kelompok')
-                ->where('id_kelompok', $id)
+                ->join('kelompok_tanis as pemilik', 'alats.pemilik_id', '=', 'pemilik.id')
+                ->select(
+                    'sewa_alats.*',
+                    'alats.nama_alat',
+                    'alats.foto_alat',
+                    'peminjam.nama_kelompok as nama_peminjam',
+                    'peminjam.alamat_kelompok as lokasi_peminjam',
+                    'pemilik.nama_kelompok as nama_pemilik',
+                    'pemilik.alamat_kelompok as lokasi_pemilik'
+                )
+                ->where('sewa_alats.id_kelompok', $id)
                 ->get();
             return [
                 'id' => '1',
@@ -29,10 +39,19 @@ class SewaAlatRepository
     public function listSewaAlatByBhabinkamtibmas($id)
     {
         try {
-            $dataSewaAlat = SewaAlat::join('kelompok_tanis', 'sewa_alats.id_kelompok', '=', 'kelompok_tanis.id')
+            $dataSewaAlat = SewaAlat::join('kelompok_tanis as peminjam', 'sewa_alats.id_kelompok', '=', 'peminjam.id')
                 ->join('alats', 'sewa_alats.id_alat', '=', 'alats.id')
-                ->select('sewa_alats.*', 'alats.nama_alat', 'alats.foto_alat', 'kelompok_tanis.nama_kelompok')
-                ->where('id_babinsa', $id)
+                ->join('kelompok_tanis as pemilik', 'alats.pemilik_id', '=', 'pemilik.id')
+                ->select(
+                    'sewa_alats.*',
+                    'alats.nama_alat',
+                    'alats.foto_alat',
+                    'peminjam.nama_kelompok as nama_peminjam',
+                    'peminjam.alamat_kelompok as lokasi_peminjam',
+                    'pemilik.nama_kelompok as nama_pemilik',
+                    'pemilik.alamat_kelompok as lokasi_pemilik'
+                )
+                ->where('sewa_alats.id_babinsa', $id)
                 ->get();
             return [
                 'id' => '1',
@@ -49,10 +68,19 @@ class SewaAlatRepository
     public function listSewaAlatByPenyedia($id)
     {
         try {
-            $dataSewaAlat = SewaAlat::join('kelompok_tanis', 'sewa_alats.id_kelompok', '=', 'kelompok_tanis.id')
+            $dataSewaAlat = SewaAlat::join('kelompok_tanis as peminjam', 'sewa_alats.id_kelompok', '=', 'peminjam.id')
                 ->join('alats', 'sewa_alats.id_alat', '=', 'alats.id')
-                ->select('sewa_alats.*', 'alats.nama_alat', 'alats.foto_alat', 'kelompok_tanis.nama_kelompok')
-                ->where('penyedia_id', $id)
+                ->join('kelompok_tanis as pemilik', 'alats.pemilik_id', '=', 'pemilik.id')
+                ->select(
+                    'sewa_alats.*',
+                    'alats.nama_alat',
+                    'alats.foto_alat',
+                    'peminjam.nama_kelompok as nama_peminjam',
+                    'peminjam.alamat_kelompok as lokasi_peminjam',
+                    'pemilik.nama_kelompok as nama_pemilik',
+                    'pemilik.alamat_kelompok as lokasi_pemilik'
+                )
+                ->where('alats.penyedia_id', $id)
                 ->get();
             return [
                 'id' => '1',
@@ -102,16 +130,30 @@ class SewaAlatRepository
     public function aksiPengajuanSewaAlat($data, $id)
     {
         try {
-            $dataSewaAlat = SewaAlat::find($id);
+            $dataSewaAlat = SewaAlat::findOrFail($id);
+            $alat = Alat::findOrFail($dataSewaAlat->id_alat);
+
+            if ($data['status'] == '1') {
+                // Reduce jumlah_alat
+                $alat->jumlah_alat = max(0, $alat->jumlah_alat - $dataSewaAlat->jumlah_alat_disewa);
+                $alat->save();
+            } elseif ($data['status'] == '4') {
+                // Increase jumlah_alat
+                $alat->jumlah_alat += $dataSewaAlat->jumlah_alat_disewa;
+                $alat->save();
+            }
+
+            // Update status
             $dataSewaAlat->update(['status' => $data['status']]);
+
             return [
                 'id' => '1',
-                'data' => 'berhasil memvalidasi pengajuan sewa alat'
+                'data' => 'Berhasil memproses sewa alat'
             ];
         } catch (\Throwable $th) {
             return [
                 'id' => '0',
-                'data' => 'terjadi kesalahan dalam memvalidasi pengajuan sewa alat'
+                'data' => 'Terjadi kesalahan dalam memproses sewa alat'
             ];
         }
     }

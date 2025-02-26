@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Alat;
+use App\Models\Bantuan;
+use App\Models\BantuanKelompokTani;
 use App\Models\JenisPanen;
 use App\Models\KelompokTani;
 use App\Models\Panen;
@@ -36,7 +38,7 @@ class DataSeeder extends Seeder
             'kecamatan' => 'Kecamatan',
             'desa' => 'Desa',
             'luas_lahan' => '10',
-            'koordinat' => '-6.1171233,106.1538912',
+            'koordinat' => '-6.1171233, 106.1538912',
             'user_id' => '4'
         ]);
         KelompokTani::create([
@@ -52,7 +54,7 @@ class DataSeeder extends Seeder
             'kecamatan' => 'Kecamatan',
             'desa' => 'Desa',
             'luas_lahan' => '10',
-            'koordinat' => '-6.1171233,106.1538912',
+            'koordinat' => '-6.1171233, 106.1538912',
             'user_id' => '4'
         ]);
         // Petani
@@ -110,6 +112,20 @@ class DataSeeder extends Seeder
             'status' => '1',
             'pemilik_id' => '2',
             'penyedia_id' => '3',
+        ]);
+        // Bantuan
+        Bantuan::create([
+            'id_kab_kota' => '3601',
+            'jenis_bantuan' => 'Bibit Jagung',
+            'jumlah_bantuan' => '4',
+            'satuan_bantuan' => 'ton',
+            'tahun' => '2025',
+            'keterangan' => 'Bantuan dari Dinas Pertanian dan Ketahanan Pangan',
+            'user_id' => '1'
+        ]);
+        BantuanKelompokTani::create([
+            'bantuan_id' => '1',
+            'kelompok_tani_id' => '1'
         ]);
     }
 }
