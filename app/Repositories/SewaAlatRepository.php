@@ -136,13 +136,20 @@ class SewaAlatRepository
             $dataSewaAlat = SewaAlat::findOrFail($id);
             $alat = Alat::findOrFail($dataSewaAlat->id_alat);
 
+            if ($data['status'] == '1' && $alat->jumlah_alat == 0) {
+                return [
+                    'id' => '0',
+                    'data' => 'Gagal, alat tidak tersedia'
+                ];
+            }
+
             if ($data['status'] == '1') {
                 // Reduce jumlah_alat
                 $alat->jumlah_alat = max(0, $alat->jumlah_alat - $dataSewaAlat->jumlah_alat_disewa);
 
                 // If jumlah_alat becomes 0, set status to 0 (not available)
                 if ($alat->jumlah_alat == 0) {
-                    $alat->status = 0;
+                    $alat->status = '0';
                 }
 
                 $alat->save();
@@ -152,7 +159,7 @@ class SewaAlatRepository
 
                 // If alat was previously not available, set status back to available (1)
                 if ($alat->status == 0 && $alat->jumlah_alat > 0) {
-                    $alat->status = 1;
+                    $alat->status = '1';
                 }
 
                 $alat->save();
