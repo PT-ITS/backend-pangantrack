@@ -107,6 +107,7 @@ Route::group([
         Route::get('detail-by-kabkota/{id}', [KelompokTaniController::class, 'detailKelompokTaniByKabKota']);
         Route::get('detail/{id}', [KelompokTaniController::class, 'detailKelompokTani']);
         Route::get('list', [KelompokTaniController::class, 'listKelompokTani']);
+        Route::get('list-with-pagination', [KelompokTaniController::class, 'listKelompokTaniPagination']);
         Route::get('list-by-bhabinkamtibmas/{id}', [KelompokTaniController::class, 'listKelompokTaniByBhabinkamtibmas']);
         Route::get('list-by-kab-kota/{id}', [KelompokTaniController::class, 'listKelompokTaniByKabKota']);
         Route::post('create', [KelompokTaniController::class, 'createKelompokTani']);

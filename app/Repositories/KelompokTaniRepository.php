@@ -300,6 +300,35 @@ class KelompokTaniRepository
         }
     }
 
+    public function listKelompokTaniPagination($dataRequest)
+    {
+        try {
+            $query = KelompokTani::query();
+
+            // Apply search filter if a search query is provided
+            if ($dataRequest->has('search') && !empty($dataRequest->search)) {
+                $query->where('nama_kelompok', 'like', '%' . $dataRequest->search . '%');
+            }
+
+            if ($dataRequest->has('kab_kota') && !empty($dataRequest->kab_kota)) {
+                $query->where('id_kab_kota', $dataRequest->kab_kota);
+            }
+
+            // Apply pagination
+            $dataKelompokTani = $query->paginate(8); // 8 items per page
+
+            return [
+                'id' => '1',
+                'data' => $dataKelompokTani
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'id' => '0',
+                'data' => 'Gagal mengambil data kelompok tani'
+            ];
+        }
+    }
+
     public function listKelompokTaniByBhabinkamtibmas($id)
     {
         try {

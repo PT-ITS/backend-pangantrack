@@ -44,6 +44,11 @@ class KelompokTaniService
         return $this->kelompokTaniRepository->listKelompokTani();
     }
 
+    public function listKelompokTaniPagination($dataRequest)
+    {
+        return $this->kelompokTaniRepository->listKelompokTaniPagination($dataRequest);
+    }
+
     public function listKelompokTaniByBhabinkamtibmas($id)
     {
         return $this->kelompokTaniRepository->listKelompokTaniByBhabinkamtibmas($id);

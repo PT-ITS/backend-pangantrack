@@ -110,6 +110,22 @@ class KelompokTaniController extends Controller
         }
     }
 
+    public function listKelompokTaniPagination(Request $request)
+    {
+        try {
+            $result = $this->kelompokTaniService->listKelompokTaniPagination($request);
+            return response()->json([
+                'id' => $result['id'],
+                'data' => $result['data'],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'id' => '0',
+                'data' => $th->getMessage(),
+            ]);
+        }
+    }
+
     public function listKelompokTaniByBhabinkamtibmas($id)
     {
         try {
