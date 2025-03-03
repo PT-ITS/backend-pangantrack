@@ -14,7 +14,9 @@ class AlatRepository
     public function listAlat()
     {
         try {
-            $dataAlat = Alat::all();
+            $dataAlat = Alat::join('kelompok_tanis', 'alats.pemilik_id', '=', 'kelompok_tanis.id')
+                ->select('alats.*', 'kelompok_tanis.nama_kelompok')
+                ->get();
             return [
                 'id' => '1',
                 'data' => $dataAlat
@@ -30,7 +32,10 @@ class AlatRepository
     public function listAlatByPenyedia($id)
     {
         try {
-            $dataAlat = Alat::where('penyedia_id', $id)->get();
+            $dataAlat = Alat::join('kelompok_tanis', 'alats.pemilik_id', '=', 'kelompok_tanis.id')
+                ->select('alats.*', 'kelompok_tanis.nama_kelompok')
+                ->where('penyedia_id', $id)
+                ->get();
             return [
                 'id' => '1',
                 'data' => $dataAlat

@@ -42,7 +42,10 @@ Route::group([
     Route::group([
         'middleware' => 'auth:api'
     ], function () {
+        Route::get('available-years-panen', [DashboardController::class, 'listAvailableYearsPanen']);
+        Route::get('available-years-bantuan', [DashboardController::class, 'listAvailableYearsBantuan']);
         Route::get('line-chart-panen-admin', [DashboardController::class, 'listLineChartPanenAdmin']);
+        Route::get('line-chart-bantuan-admin', [DashboardController::class, 'listLineChartBantuanAdmin']);
         // Route::get('pie-chart-panen-admin', [DashboardController::class, 'listPieChartPanenAdmin']);
     });
 });
@@ -104,6 +107,7 @@ Route::group([
         Route::get('detail-by-kabkota/{id}', [KelompokTaniController::class, 'detailKelompokTaniByKabKota']);
         Route::get('detail/{id}', [KelompokTaniController::class, 'detailKelompokTani']);
         Route::get('list', [KelompokTaniController::class, 'listKelompokTani']);
+        Route::get('list-with-pagination', [KelompokTaniController::class, 'listKelompokTaniPagination']);
         Route::get('list-by-bhabinkamtibmas/{id}', [KelompokTaniController::class, 'listKelompokTaniByBhabinkamtibmas']);
         Route::get('list-by-kab-kota/{id}', [KelompokTaniController::class, 'listKelompokTaniByKabKota']);
         Route::post('create', [KelompokTaniController::class, 'createKelompokTani']);

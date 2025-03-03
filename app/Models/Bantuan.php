@@ -13,8 +13,10 @@ class Bantuan extends Model
         "id_kab_kota",
         "jenis_bantuan",
         "jumlah_bantuan",
+        "satuan_bantuan",
+        "bulan",
         "tahun",
-        "keterangan",
+        // "keterangan",
         "user_id"
     ];
 

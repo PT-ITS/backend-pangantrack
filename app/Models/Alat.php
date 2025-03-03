@@ -13,10 +13,12 @@ class Alat extends Model
         'jenis_alat',
         'nama_alat',
         'deskripsi_alat',
-        'harga_sewa_alat',
+        'lokasi_awal_alat',
+        // 'harga_sewa_alat',
         'jumlah_alat',
         'foto_alat',
         'status',
+        'pemilik_id',
         'penyedia_id',
     ];
 }

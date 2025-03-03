@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Alat;
+use App\Models\Bantuan;
+use App\Models\BantuanKelompokTani;
 use App\Models\JenisPanen;
 use App\Models\KelompokTani;
 use App\Models\Panen;
@@ -36,7 +38,7 @@ class DataSeeder extends Seeder
             'kecamatan' => 'Kecamatan',
             'desa' => 'Desa',
             'luas_lahan' => '10',
-            'koordinat' => '-6.1171233,106.1538912',
+            'koordinat' => '-6.1171233, 106.1538912',
             'user_id' => '4'
         ]);
         KelompokTani::create([
@@ -52,7 +54,7 @@ class DataSeeder extends Seeder
             'kecamatan' => 'Kecamatan',
             'desa' => 'Desa',
             'luas_lahan' => '10',
-            'koordinat' => '-6.1171233,106.1538912',
+            'koordinat' => '-6.1171233, 106.1538912',
             'user_id' => '4'
         ]);
         // Petani
@@ -69,10 +71,45 @@ class DataSeeder extends Seeder
             'kelompok_id' => '2',
         ]);
         // Jenis Panen
-        JenisPanen::create([
-            'jenis_panen' => 'Padi',
-            'foto_jenis' => 'jenis_panen/default.jpeg',
-        ]);
+        $jenisPanenList = [
+            'Padi',
+            'Jagung',
+            'Kedelai',
+            'Kacang Tanah',
+            'Singkong',
+            'Ubi Jalar',
+            'Tebu',
+            'Kelapa Sawit',
+            'Kopi',
+            'Kakao',
+            'Teh',
+            'Cengkeh',
+            'Vanili',
+            'Lada',
+            'Cabai',
+            'Tomat',
+            'Bawang Merah',
+            'Bawang Putih',
+            'Wortel',
+            'Kubis',
+            'Timun',
+            'Terong',
+            'Semangka',
+            'Melon',
+            'Durian',
+            'Mangga',
+            'Nanas',
+            'Pisang',
+            'Rambutan',
+            'Salak'
+        ];
+
+        foreach ($jenisPanenList as $jenis) {
+            JenisPanen::create([
+                'jenis_panen' => $jenis,
+                'foto_jenis' => 'jenis_panen/default.jpeg',
+            ]);
+        }
         // Panen
         Panen::create([
             'jumlah_panen' => '10',
@@ -80,34 +117,53 @@ class DataSeeder extends Seeder
             'tanggal_panen' => '2025-02-02',
             'status_panen' => '2',
             'kelompok_tani_id' => '1',
-            'jenis_panen_id' => '1',
+            'jenis_panen_id' => '2',
         ]);
         Panen::create([
             'tanggal_tanam' => '2025-02-02',
             'status_panen' => '1',
             'kelompok_tani_id' => '2',
-            'jenis_panen_id' => '1',
+            'jenis_panen_id' => '2',
         ]);
         // Alsintan
         Alat::create([
             'jenis_alat' => 'Traktor',
             'nama_alat' => 'Traktor Kubota',
             'deskripsi_alat' => 'Untuk membajak sawah',
-            'harga_sewa_alat' => '500000',
+            'lokasi_awal_alat' => 'Jl. Kurma',
+            // 'harga_sewa_alat' => '500000',
             'jumlah_alat' => '1',
             'foto_alat' => 'alat_tani/default.jpeg',
             'status' => '1',
+            'pemilik_id' => '1',
             'penyedia_id' => '3',
         ]);
         Alat::create([
             'jenis_alat' => 'Mower',
             'nama_alat' => 'LCPOWER Komodo Lawn Mower 2.0',
             'deskripsi_alat' => 'Untuk memotong rumput',
-            'harga_sewa_alat' => '300000',
+            'lokasi_awal_alat' => 'Jl. Kurma',
+            // 'harga_sewa_alat' => '300000',
             'jumlah_alat' => '3',
             'foto_alat' => 'alat_tani/default.jpeg',
             'status' => '1',
+            'pemilik_id' => '2',
             'penyedia_id' => '3',
+        ]);
+        // Bantuan
+        Bantuan::create([
+            'id_kab_kota' => '3601',
+            'jenis_bantuan' => 'Bibit Jagung',
+            'jumlah_bantuan' => '4',
+            'satuan_bantuan' => 'ton',
+            'bulan' => '2',
+            'tahun' => '2025',
+            // 'keterangan' => 'Bantuan dari Dinas Pertanian dan Ketahanan Pangan',
+            'user_id' => '1'
+        ]);
+        BantuanKelompokTani::create([
+            'bantuan_id' => '1',
+            'kelompok_tani_id' => '1'
         ]);
     }
 }
