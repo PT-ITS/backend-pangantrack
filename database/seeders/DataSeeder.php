@@ -152,10 +152,10 @@ class DataSeeder extends Seeder
         ]);
         // Bantuan
         Bantuan::create([
-            'id_kab_kota' => '3601',
+            'id_kab_kota' => '3602',
             'jenis_bantuan' => 'JAGUNG',
-            'jumlah_bantuan' => '4',
-            'satuan_bantuan' => 'ton',
+            'jumlah_bantuan' => '150',
+            'satuan_bantuan' => 'kg',
             'bulan' => '2',
             'tahun' => '2025',
             // 'keterangan' => 'Bantuan dari Dinas Pertanian dan Ketahanan Pangan',

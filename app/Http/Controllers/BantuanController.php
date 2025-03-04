@@ -53,7 +53,7 @@ class BantuanController extends Controller
             $validateData = $request->validate([
                 'id_kab_kota' => 'required',
                 'jenis_bantuan' => 'required',
-                'jumlah_bantuan' => 'required',
+                // 'jumlah_bantuan' => 'required',
                 'satuan_bantuan' => 'required',
                 'bulan' => 'required',
                 'tahun' => 'required',
@@ -61,8 +61,8 @@ class BantuanController extends Controller
                 'kelompok_tani_id' => 'required|array',
                 'kelompok_tani_id.*' => 'exists:kelompok_tanis,id',
             ]);
-            // $validateData['user_id'] = auth()->user()->id;
-            $validateData['user_id'] = '1';
+            $validateData['user_id'] = auth()->user()->id;
+            // $validateData['user_id'] = '1';
 
             $result = $this->bantuanService->createBantuan($validateData);
             return response()->json([
@@ -83,7 +83,7 @@ class BantuanController extends Controller
             $validateData = $request->validate([
                 'id_kab_kota' => 'required',
                 'jenis_bantuan' => 'required',
-                'jumlah_bantuan' => 'required',
+                // 'jumlah_bantuan' => 'required',
                 'satuan_bantuan' => 'required',
                 'bulan' => 'required',
                 'tahun' => 'required',
