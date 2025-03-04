@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminDinasController;
 use App\Http\Controllers\AlatController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -62,6 +63,21 @@ Route::group([
         Route::post('create', [AdminPoldaController::class, 'createAdminPolda']);
         Route::post('update/{id}', [AdminPoldaController::class, 'updateAdminPolda']);
         Route::delete('delete/{id}', [AdminPoldaController::class, 'deleteAdminPolda']);
+    });
+});
+
+Route::group([
+    'prefix' => 'admin-dinas'
+], function () {
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::get('detail/{id}', [AdminDinasController::class, 'detailAdminDinas']);
+        Route::get('detail-by-user/{id}', [AdminDinasController::class, 'detailAdminDinasByUserId']);
+        Route::get('list', [AdminDinasController::class, 'listAdminDinas']);
+        Route::post('create', [AdminDinasController::class, 'createAdminDinas']);
+        Route::post('update/{id}', [AdminDinasController::class, 'updateAdminDinas']);
+        Route::delete('delete/{id}', [AdminDinasController::class, 'deleteAdminDinas']);
     });
 });
 
@@ -148,6 +164,7 @@ Route::group([
     Route::group([
         'middleware' => 'auth:api'
     ], function () {
+        Route::get('list', [PanenController::class, 'listPanen']);
         Route::get('list/{id}', [PanenController::class, 'listPanenByKelompokTani']);
         Route::post('create', [PanenController::class, 'createPanen']);
         Route::post('update/{id}', [PanenController::class, 'updatePanen']);
@@ -192,10 +209,10 @@ Route::group([
     // Route::group([
     //     'middleware' => 'auth:api'
     // ], function () {
-        Route::get('detail/{id}', [BantuanController::class, 'detailBantuan']);
-        Route::get('list', [BantuanController::class, 'listBantuan']);
-        Route::post('create', [BantuanController::class, 'createBantuan']);
-        Route::post('update/{id}', [BantuanController::class, 'updateBantuan']);
-        Route::delete('delete/{id}', [BantuanController::class, 'deleteBantuan']);
+    Route::get('detail/{id}', [BantuanController::class, 'detailBantuan']);
+    Route::get('list', [BantuanController::class, 'listBantuan']);
+    Route::post('create', [BantuanController::class, 'createBantuan']);
+    Route::post('update/{id}', [BantuanController::class, 'updateBantuan']);
+    Route::delete('delete/{id}', [BantuanController::class, 'deleteBantuan']);
     // });
 });

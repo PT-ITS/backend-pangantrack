@@ -30,4 +30,9 @@ class KelompokTani extends Model
     {
         return $this->hasMany(Panen::class, 'kelompok_tani_id');
     }
+
+    public function bantuans()
+    {
+        return $this->belongsToMany(Bantuan::class, 'bantuan_kelompok_tanis', 'kelompok_tani_id', 'bantuan_id');
+    }
 }

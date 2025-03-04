@@ -26,7 +26,7 @@ class DataSeeder extends Seeder
     {
         // Kelompok Tani
         KelompokTani::create([
-            'nama_kelompok' => 'Kelompok Tani Mutiara Agung',
+            'nama_kelompok' => 'Mutiara Agung',
             'status_kelompok' => '1',
             'alamat_kelompok' => 'Jl. Kurma',
             'ketua_kelompok' => 'Zamorano',
@@ -42,7 +42,7 @@ class DataSeeder extends Seeder
             'user_id' => '4'
         ]);
         KelompokTani::create([
-            'nama_kelompok' => 'Kelompok Tani Sukses Bersama',
+            'nama_kelompok' => 'Sukses Bersama',
             'status_kelompok' => '1',
             'alamat_kelompok' => 'Jl. Kurma',
             'ketua_kelompok' => 'Jhezy',
@@ -153,7 +153,7 @@ class DataSeeder extends Seeder
         // Bantuan
         Bantuan::create([
             'id_kab_kota' => '3601',
-            'jenis_bantuan' => 'Bibit Jagung',
+            'jenis_bantuan' => 'JAGUNG',
             'jumlah_bantuan' => '4',
             'satuan_bantuan' => 'ton',
             'bulan' => '2',
@@ -163,7 +163,7 @@ class DataSeeder extends Seeder
         ]);
         BantuanKelompokTani::create([
             'bantuan_id' => '1',
-            'kelompok_tani_id' => '1'
+            'kelompok_tani_id' => '2'
         ]);
     }
 }

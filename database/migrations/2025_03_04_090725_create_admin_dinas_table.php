@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('admin_dinas', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_admin');
+            $table->string('nip_admin');
+            $table->string('jabatan_admin');
+            $table->string('tempat_dinas_admin');
+            $table->string('alamat_admin');
+            $table->string('hp_admin');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

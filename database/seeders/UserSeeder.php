@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\AdminDinas;
 use App\Models\AdminPolda;
 use App\Models\Bhabinkamtibmas;
 use App\Models\Penyedia;
@@ -95,8 +96,7 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::create(2024, 10, 10, 12, 0, 0), // Format: (year, month, day, hour, minute, second)
             'updated_at' => Carbon::create(2024, 10, 10, 12, 0, 0) // Format: (year, month, day, hour, minute, second)
         ]);
-
-        // admin dinas
+        // Admin Dinas
         User::create([
             'name' => 'admindinas',
             'email' => 'admindinas@pangantrack.com',
@@ -104,6 +104,17 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12345'),
             'level' => '4',
             'status' => '1',
+            'created_at' => Carbon::create(2024, 10, 10, 12, 0, 0), // Format: (year, month, day, hour, minute, second)
+            'updated_at' => Carbon::create(2024, 10, 10, 12, 0, 0) // Format: (year, month, day, hour, minute, second)
+        ]);
+        AdminDinas::create([
+            'nama_admin' => 'Kabid Dedi Cahyanto',
+            'nip_admin' => '123456789',
+            'jabatan_admin' => 'Kepala Bidang Ketahanan Pangan',
+            'tempat_dinas_admin' => 'Dinas Pertanian dan Ketahanan Pangan Kota Serang',
+            'alamat_admin' => 'Jl. Jend. Sudirman No.15, Panancangan, Kec. Serang, Kota Serang, Banten 42124',
+            'hp_admin' => '08123456789',
+            'user_id' => '5',
             'created_at' => Carbon::create(2024, 10, 10, 12, 0, 0), // Format: (year, month, day, hour, minute, second)
             'updated_at' => Carbon::create(2024, 10, 10, 12, 0, 0) // Format: (year, month, day, hour, minute, second)
         ]);

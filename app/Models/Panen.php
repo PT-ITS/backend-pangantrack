@@ -22,4 +22,9 @@ class Panen extends Model
     {
         return $this->belongsTo(JenisPanen::class, 'jenis_panen_id');
     }
+
+    public function kelompokTani()
+    {
+        return $this->belongsTo(KelompokTani::class, 'kelompok_tani_id');
+    }
 }
