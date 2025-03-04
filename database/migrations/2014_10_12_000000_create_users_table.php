@@ -26,6 +26,8 @@ return new class extends Migration
                 2, // penyedia
 
                 3, // bhabinkamtibmas
+
+                4 // admin dinas
             ])->default(3);
             $table->enum('status', [
                 0, // process

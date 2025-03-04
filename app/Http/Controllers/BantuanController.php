@@ -61,7 +61,8 @@ class BantuanController extends Controller
                 'kelompok_tani_id' => 'required|array',
                 'kelompok_tani_id.*' => 'exists:kelompok_tanis,id',
             ]);
-            $validateData['user_id'] = auth()->user()->id;
+            // $validateData['user_id'] = auth()->user()->id;
+            $validateData['user_id'] = '1';
 
             $result = $this->bantuanService->createBantuan($validateData);
             return response()->json([

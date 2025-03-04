@@ -189,13 +189,13 @@ Route::group([
 Route::group([
     'prefix' => 'bantuan'
 ], function () {
-    Route::group([
-        'middleware' => 'auth:api'
-    ], function () {
+    // Route::group([
+    //     'middleware' => 'auth:api'
+    // ], function () {
         Route::get('detail/{id}', [BantuanController::class, 'detailBantuan']);
         Route::get('list', [BantuanController::class, 'listBantuan']);
         Route::post('create', [BantuanController::class, 'createBantuan']);
         Route::post('update/{id}', [BantuanController::class, 'updateBantuan']);
         Route::delete('delete/{id}', [BantuanController::class, 'deleteBantuan']);
-    });
+    // });
 });
