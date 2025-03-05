@@ -112,8 +112,8 @@ class DataSeeder extends Seeder
         }
         // Panen
         Panen::create([
-            'jumlah_panen' => '10',
-            'tanggal_tanam' => '2024-08-02',
+            'jumlah_panen' => '6',
+            'tanggal_tanam' => '2024-11-02',
             'tanggal_panen' => '2025-02-02',
             'status_panen' => '2',
             'kelompok_tani_id' => '1',

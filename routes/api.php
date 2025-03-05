@@ -164,6 +164,7 @@ Route::group([
     Route::group([
         'middleware' => 'auth:api'
     ], function () {
+        Route::get('detail/{id}', [PanenController::class, 'detailPanen']);
         Route::get('list', [PanenController::class, 'listPanen']);
         Route::get('list/{id}', [PanenController::class, 'listPanenByKelompokTani']);
         Route::post('create', [PanenController::class, 'createPanen']);

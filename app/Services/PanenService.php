@@ -13,6 +13,11 @@ class PanenService
         $this->panenRepository = $panenRepository;
     }
 
+    public function detailPanen($id)
+    {
+        return $this->panenRepository->detailPanen($id);
+    }
+
     public function listPanen()
     {
         return $this->panenRepository->listPanen();

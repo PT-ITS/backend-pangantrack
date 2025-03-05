@@ -14,6 +14,22 @@ class PanenController extends Controller
         $this->panenService = $panenService;
     }
 
+    public function detailPanen($id)
+    {
+        try {
+            $result = $this->panenService->detailPanen($id);
+            return response()->json([
+                'id' => $result['id'],
+                'data' => $result['data'],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'id' => '0',
+                'data' => $th->getMessage(),
+            ]);
+        }
+    }
+
     public function listPanen()
     {
         try {

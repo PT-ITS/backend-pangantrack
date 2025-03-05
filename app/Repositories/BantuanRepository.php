@@ -63,6 +63,7 @@ class BantuanRepository
                     $kelompokTani = KelompokTani::find($kelompokTaniId);
                     if ($kelompokTani) {
                         $cekBantuan = Bantuan::where('jenis_bantuan', $data['jenis_bantuan'])
+                            ->where('satuan_bantuan', $data['satuan_bantuan'])
                             ->where('tahun', $data['tahun'])
                             ->where('bulan', $data['bulan'])
                             ->where('jumlah_bantuan', $kelompokTani->luas_lahan * 15)->first();
@@ -122,6 +123,7 @@ class BantuanRepository
                     $kelompokTani = KelompokTani::find($kelompokTaniId);
                     if ($kelompokTani) {
                         $cekBantuan = Bantuan::where('jenis_bantuan', $data['jenis_bantuan'])
+                            ->where('satuan_bantuan', $data['satuan_bantuan'])
                             ->where('tahun', $data['tahun'])
                             ->where('bulan', $data['bulan'])
                             ->where('jumlah_bantuan', $kelompokTani->luas_lahan * 15)
