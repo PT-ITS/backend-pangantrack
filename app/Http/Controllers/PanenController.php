@@ -94,6 +94,7 @@ class PanenController extends Controller
                 // 'tanggal_tanam' => 'nullable',
                 'tanggal_panen' => 'required',
                 'status_panen' => 'required',
+                'alasan' => 'nullable',
                 'kelompok_tani_id' => 'required',
                 // 'jenis_panen_id' => 'required'
             ]);

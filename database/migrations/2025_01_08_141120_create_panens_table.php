@@ -21,6 +21,7 @@ return new class extends Migration
                 '1', // tanam
                 '2' //panen
             ]);
+            $table->string('alasan')->nullable();
             $table->foreignId('kelompok_tani_id')->constrained('kelompok_tanis')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('jenis_panen_id')->constrained('jenis_panens')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
