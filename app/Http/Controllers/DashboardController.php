@@ -110,6 +110,60 @@ class DashboardController extends Controller
         }
     }
 
+    public function listLineChartPanenAdminStartEnd(Request $request)
+    {
+        try {
+            $startMonth = $request->query('start_month');
+            $endMonth = $request->query('end_month');
+            $year = $request->query('year');
+
+            $result = $this->dashboardService->listLineChartPanenAdminStartEnd($startMonth, $endMonth, $year);
+
+            return response()->json(
+                [
+                    'id' => $result['id'],
+                    'data' => $result['data']
+                ],
+                $result['statusCode']
+            );
+        } catch (\Throwable $th) {
+            return response()->json(
+                [
+                    'id' => '0',
+                    'data' => $th->getMessage()
+                ],
+                401
+            );
+        }
+    }
+
+    public function listLineChartBantuanAdminStartEnd(Request $request)
+    {
+        try {
+            $startMonth = $request->query('start_month');
+            $endMonth = $request->query('end_month');
+            $year = $request->query('year');
+
+            $result = $this->dashboardService->listLineChartBantuanAdminStartEnd($startMonth, $endMonth, $year);
+
+            return response()->json(
+                [
+                    'id' => $result['id'],
+                    'data' => $result['data']
+                ],
+                $result['statusCode']
+            );
+        } catch (\Throwable $th) {
+            return response()->json(
+                [
+                    'id' => '0',
+                    'data' => $th->getMessage()
+                ],
+                401
+            );
+        }
+    }
+
     // public function listPieChartPanenAdmin()
     // {
     //     try {

@@ -179,6 +179,130 @@ class DashboardRepository
         }
     }
 
+    public function listLineChartPanenAdminStartEnd($startMonth = null, $endMonth = null, $year = null)
+    {
+        try {
+            $query = Panen::query();
+
+            if ($startMonth && $endMonth) {
+                $query->whereBetween(DB::raw('MONTH(tanggal_panen)'), [$startMonth, $endMonth]);
+            } elseif ($startMonth) {
+                $query->whereMonth('tanggal_panen', '>=', $startMonth);
+            } elseif ($endMonth) {
+                $query->whereMonth('tanggal_panen', '<=', $endMonth);
+            }
+
+            if ($year) {
+                $query->whereYear('tanggal_panen', $year);
+            }
+
+            // Fetch all unique id_kab_kota
+            $kabKotaIds = KelompokTani::distinct()->pluck('id_kab_kota');
+
+            if ($kabKotaIds->isEmpty()) {
+                return [
+                    "id" => '0',
+                    "statusCode" => 404,
+                    "data" => 'Data line chart not found'
+                ];
+            }
+
+            $result = [];
+
+            foreach ($kabKotaIds as $id_kab_kota) {
+                // Get kelompok_tani IDs for this id_kab_kota
+                $kelompokTaniIds = KelompokTani::where('id_kab_kota', $id_kab_kota)->pluck('id');
+
+                // Get jumlah_panen per jenis_panen
+                $daftarJenisPanen = JenisPanen::whereIn(
+                    'id',
+                    Panen::whereIn('kelompok_tani_id', $kelompokTaniIds)->pluck('jenis_panen_id')
+                )
+                    ->withSum(['panens' => function ($query) use ($kelompokTaniIds, $startMonth, $endMonth, $year) {
+                        $query->whereIn('kelompok_tani_id', $kelompokTaniIds);
+                        if ($startMonth && $endMonth) {
+                            $query->whereBetween(DB::raw('MONTH(tanggal_panen)'), [$startMonth, $endMonth]);
+                        } elseif ($startMonth) {
+                            $query->whereMonth('tanggal_panen', '>=', $startMonth);
+                        } elseif ($endMonth) {
+                            $query->whereMonth('tanggal_panen', '<=', $endMonth);
+                        }
+                        if ($year) {
+                            $query->whereYear('tanggal_panen', $year);
+                        }
+                    }], 'jumlah_panen')
+                    ->get()
+                    ->map(function ($item) use ($id_kab_kota) {
+                        return [
+                            'id_kab_kota' => $id_kab_kota,
+                            'jenis_panen' => $item->jenis_panen,
+                            'jumlah_panen' => $item->panens_sum_jumlah_panen
+                        ];
+                    });
+
+                $result = array_merge($result, $daftarJenisPanen->toArray());
+            }
+
+            return [
+                "id" => '1',
+                "statusCode" => 200,
+                "data" => $result,
+            ];
+        } catch (\Exception $e) {
+            return [
+                "id" => '0',
+                "statusCode" => 401,
+                "data" => $e->getMessage()
+            ];
+        }
+    }
+
+    public function listLineChartBantuanAdminStartEnd($startMonth = null, $endMonth = null, $year = null)
+    {
+        try {
+            $query = Bantuan::select(
+                'id_kab_kota',
+                'jenis_bantuan',
+                DB::raw("SUM(jumlah_bantuan) as total_bantuan"),
+                'satuan_bantuan'
+            )
+                ->groupBy('id_kab_kota', 'jenis_bantuan', 'satuan_bantuan');
+
+            if ($startMonth && $endMonth) {
+                $query->whereBetween('bulan', [$startMonth, $endMonth]);
+            } elseif ($startMonth) {
+                $query->where('bulan', '>=', $startMonth);
+            } elseif ($endMonth) {
+                $query->where('bulan', '<=', $endMonth);
+            }
+
+            if ($year) {
+                $query->where('tahun', $year);
+            }
+
+            $result = $query->get()->map(function ($item) {
+                return [
+                    'id_kab_kota' => $item->id_kab_kota,
+                    'jenis_bantuan' => $item->jenis_bantuan,
+                    'jumlah_bantuan' => (int) $item->total_bantuan,
+                    'satuan_bantuan' => $item->satuan_bantuan,
+                ];
+            });
+
+            return [
+                "id" => '1',
+                "statusCode" => 200,
+                "data" => $result,
+            ];
+        } catch (\Exception $e) {
+            return [
+                "id" => '0',
+                "statusCode" => 401,
+                "data" => $e->getMessage()
+            ];
+        }
+    }
+
     // public function listPieChartPanenAdmin()
     // {
     //     try {

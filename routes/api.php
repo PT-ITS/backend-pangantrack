@@ -47,6 +47,8 @@ Route::group([
         Route::get('available-years-bantuan', [DashboardController::class, 'listAvailableYearsBantuan']);
         Route::get('line-chart-panen-admin', [DashboardController::class, 'listLineChartPanenAdmin']);
         Route::get('line-chart-bantuan-admin', [DashboardController::class, 'listLineChartBantuanAdmin']);
+        Route::get('line-chart-panen-admin-start-end', [DashboardController::class, 'listLineChartPanenAdminStartEnd']);
+        Route::get('line-chart-bantuan-admin-start-end', [DashboardController::class, 'listLineChartBantuanAdminStartEnd']);
         // Route::get('pie-chart-panen-admin', [DashboardController::class, 'listPieChartPanenAdmin']);
     });
 });
@@ -164,6 +166,7 @@ Route::group([
     Route::group([
         'middleware' => 'auth:api'
     ], function () {
+        Route::get('panen-lahan', [PanenController::class, 'panenDanLahan']);
         Route::get('detail/{id}', [PanenController::class, 'detailPanen']);
         Route::get('list', [PanenController::class, 'listPanen']);
         Route::get('list/{id}', [PanenController::class, 'listPanenByKelompokTani']);

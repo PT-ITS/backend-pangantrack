@@ -14,6 +14,25 @@ class PanenController extends Controller
         $this->panenService = $panenService;
     }
 
+    public function panenDanLahan(Request $request)
+    {
+        try {
+            $kabkota = $request->query('id_kab_kota');
+            $year = $request->query('year');
+
+            $result = $this->panenService->panenDanLahan($kabkota, $year);
+            return response()->json([
+                'id' => $result['id'],
+                'data' => $result['data'],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'id' => '0',
+                'data' => $th->getMessage(),
+            ]);
+        }
+    }
+
     public function detailPanen($id)
     {
         try {

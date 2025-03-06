@@ -13,6 +13,11 @@ class PanenService
         $this->panenRepository = $panenRepository;
     }
 
+    public function panenDanLahan($kabkota = null, $year = null)
+    {
+        return $this->panenRepository->panenDanLahan($kabkota, $year);
+    }
+
     public function detailPanen($id)
     {
         return $this->panenRepository->detailPanen($id);

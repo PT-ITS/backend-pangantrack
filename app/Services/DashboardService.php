@@ -49,6 +49,32 @@ class DashboardService
         }
     }
 
+    public function listLineChartPanenAdminStartEnd($startMonth = null, $endMonth = null, $year = null)
+    {
+        try {
+            return $this->dashboardRepository->listLineChartPanenAdminStartEnd($startMonth, $endMonth, $year);
+        } catch (\Exception $e) {
+            return [
+                "id" => '0',
+                "statusCode" => 401,
+                "data" => $e->getMessage(),
+            ];
+        }
+    }
+
+    public function listLineChartBantuanAdminStartEnd($startMonth = null, $endMonth = null, $year = null)
+    {
+        try {
+            return $this->dashboardRepository->listLineChartBantuanAdminStartEnd($startMonth, $endMonth, $year);
+        } catch (\Exception $e) {
+            return [
+                "id" => '0',
+                "statusCode" => 401,
+                "data" => $e->getMessage(),
+            ];
+        }
+    }
+
     // public function listPieChartPanenAdmin()
     // {
     //     try {

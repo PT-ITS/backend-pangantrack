@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Panen;
+use Carbon\Carbon;
 
 class PanenRepository
 {
@@ -11,6 +12,63 @@ class PanenRepository
     public function __construct(Panen $panenModel)
     {
         $this->panenModel = $panenModel;
+    }
+
+    public function panenDanLahan($kabkota = null, $year = null)
+    {
+        try {
+            $year = $year ?? Carbon::now()->year;
+
+            $data = $this->panenModel
+                ->with(['jenisPanen', 'kelompokTani'])
+                ->whereHas('kelompokTani', function ($query) use ($kabkota) {
+                    if ($kabkota) {
+                        $query->where('id_kab_kota', $kabkota);
+                    }
+                })
+                ->get()
+                ->filter(function ($panen) use ($year) {
+                    // Calculate the estimated harvest date (tanggal_panen)
+                    $tanggalPanen = Carbon::parse($panen->tanggal_tanam)->addMonths(3);
+                    return $tanggalPanen->year == $year;
+                })
+                ->groupBy('jenis_panen_id')
+                ->map(function ($panens, $jenisPanenId) {
+                    $jenisPanen = $panens->first()->jenisPanen;
+                    $totalPerkiraanHasil = 0;
+                    $totalLuasLahanDitanam = 0;
+
+                    foreach ($panens as $panen) {
+                        $kelompokTani = $panen->kelompokTani;
+                        $luasLahan = $kelompokTani ? $kelompokTani->luas_lahan : 0;
+
+                        // Sum luas lahan ditanam
+                        $totalLuasLahanDitanam += $luasLahan;
+
+                        // Calculate perkiraan hasil panen
+                        $perkiraanHasil = floor($luasLahan / 10) * 6;
+                        $totalPerkiraanHasil += $perkiraanHasil;
+                    }
+
+                    return [
+                        'jenis_panen_id' => $jenisPanenId,
+                        'jenis_panen' => $jenisPanen->jenis_panen,
+                        'perkiraan_hasil_panen' => $totalPerkiraanHasil,
+                        'luas_lahan_ditanam' => $totalLuasLahanDitanam
+                    ];
+                })
+                ->values(); // Reset keys for clean JSON output
+
+            return [
+                'id' => '1',
+                'data' => $data
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'id' => '0',
+                'data' => 'Terjadi kesalahan dalam mengambil data panen'
+            ];
+        }
     }
 
     public function detailPanen($id)
