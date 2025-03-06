@@ -53,6 +53,50 @@ class BantuanRepository
         }
     }
 
+    public function listBantuanByBhabinkamtibmas($id)
+    {
+        try {
+            $data = $this->bantuanModel
+                ->whereHas('kelompokTani', function ($query) use ($id) {
+                    $query->where('user_id', $id);
+                })
+                ->with('kelompokTani')
+                ->get();
+
+            return [
+                'id' => '1',
+                'data' => $data
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'id' => '0',
+                'data' => 'terjadi kesalahan dalam mengambil data bantuan'
+            ];
+        }
+    }
+
+    public function listBantuanByKelompokTani($id)
+    {
+        try {
+            $data = $this->bantuanModel
+                ->whereHas('kelompokTani', function ($query) use ($id) {
+                    $query->where('kelompok_tani_id', $id);
+                })
+                ->with('kelompokTani')
+                ->get();
+
+            return [
+                'id' => '1',
+                'data' => $data
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'id' => '0',
+                'data' => 'terjadi kesalahan dalam mengambil data bantuan'
+            ];
+        }
+    }
+
     public function createBantuan($data)
     {
         DB::beginTransaction();

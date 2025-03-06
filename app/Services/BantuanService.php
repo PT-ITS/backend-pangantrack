@@ -23,6 +23,16 @@ class BantuanService
         return $this->bantuanRepository->listBantuan();
     }
 
+    public function listBantuanByBhabinkamtibmas($id)
+    {
+        return $this->bantuanRepository->listBantuanByBhabinkamtibmas($id);
+    }
+
+    public function listBantuanByKelompokTani($id)
+    {
+        return $this->bantuanRepository->listBantuanByKelompokTani($id);
+    }
+
     public function createBantuan($data)
     {
         return $this->bantuanRepository->createBantuan($data);

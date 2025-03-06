@@ -46,6 +46,36 @@ class BantuanController extends Controller
             ]);
         }
     }
+    public function listBantuanByBhabinkamtibmas($id)
+    {
+        try {
+            $result = $this->bantuanService->listBantuanByBhabinkamtibmas($id);
+            return response()->json([
+                'id' => $result['id'],
+                'data' => $result['data'],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'id' => '0',
+                'data' => $th->getMessage(),
+            ]);
+        }
+    }
+    public function listBantuanByKelompokTani($id)
+    {
+        try {
+            $result = $this->bantuanService->listBantuanByKelompokTani($id);
+            return response()->json([
+                'id' => $result['id'],
+                'data' => $result['data'],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'id' => '0',
+                'data' => $th->getMessage(),
+            ]);
+        }
+    }
 
     public function createBantuan(Request $request)
     {

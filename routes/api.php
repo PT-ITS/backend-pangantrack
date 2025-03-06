@@ -212,6 +212,8 @@ Route::group([
     ], function () {
         Route::get('detail/{id}', [BantuanController::class, 'detailBantuan']);
         Route::get('list', [BantuanController::class, 'listBantuan']);
+        Route::get('list-by-bhabinkamtibmas/{id}', [BantuanController::class, 'listBantuanByBhabinkamtibmas']);
+        Route::get('list-by-kelompok-tani/{id}', [BantuanController::class, 'listBantuanByKelompokTani']);
         Route::post('create', [BantuanController::class, 'createBantuan']);
         Route::post('update/{id}', [BantuanController::class, 'updateBantuan']);
         Route::delete('delete/{id}', [BantuanController::class, 'deleteBantuan']);
