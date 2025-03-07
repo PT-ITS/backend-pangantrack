@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('nrp_bhabin');
             $table->string('jabatan_bhabin');
             $table->string('tempat_dinas_bhabin');
+            $table->string('id_kab_kota');
+            $table->string('kecamatan');
             $table->string('alamat_bhabin');
             $table->string('hp_bhabin');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');

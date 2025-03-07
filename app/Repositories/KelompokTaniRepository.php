@@ -377,6 +377,24 @@ class KelompokTaniRepository
         }
     }
 
+    public function listKelompokTaniByKabKotaKecamatan($dataRequest)
+    {
+        try {
+            $dataKelompokTani = KelompokTani::where('id_kab_kota', $dataRequest->id_kab_kota)
+                ->where('kecamatan', $dataRequest->kecamatan)
+                ->get();
+            return [
+                'id' => '1',
+                'data' => $dataKelompokTani
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'id' => '0',
+                'data' => $th->getMessage()
+            ];
+        }
+    }
+
     public function createKelompokTani($dataRequest)
     {
         try {

@@ -92,6 +92,8 @@ class BhabinkamtibmasRepository
             $bhabinkamtibmas->nrp_bhabin = $data['nrp_bhabin'];
             $bhabinkamtibmas->jabatan_bhabin = $data['jabatan_bhabin'];
             $bhabinkamtibmas->tempat_dinas_bhabin = $data['tempat_dinas_bhabin'];
+            $bhabinkamtibmas->id_kab_kota = $data['id_kab_kota'];
+            $bhabinkamtibmas->kecamatan = $data['kecamatan'];
             $bhabinkamtibmas->alamat_bhabin = $data['alamat_bhabin'];
             $bhabinkamtibmas->hp_bhabin = $data['hp_bhabin'];
             $bhabinkamtibmas->user_id = $user->id;
@@ -127,6 +129,8 @@ class BhabinkamtibmasRepository
             $bhabinkamtibmas->nrp_bhabin = $data['nrp_bhabin'];
             $bhabinkamtibmas->jabatan_bhabin = $data['jabatan_bhabin'];
             $bhabinkamtibmas->tempat_dinas_bhabin = $data['tempat_dinas_bhabin'];
+            $bhabinkamtibmas->id_kab_kota = $data['id_kab_kota'];
+            $bhabinkamtibmas->kecamatan = $data['kecamatan'];
             $bhabinkamtibmas->alamat_bhabin = $data['alamat_bhabin'];
             $bhabinkamtibmas->hp_bhabin = $data['hp_bhabin'];
             $bhabinkamtibmas->save();

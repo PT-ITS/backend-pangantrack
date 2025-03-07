@@ -74,6 +74,8 @@ class BhabinkamtibmasController extends Controller
                 'nrp_bhabin' => 'required',
                 'jabatan_bhabin' => 'required',
                 'tempat_dinas_bhabin' => 'required',
+                'id_kab_kota' => 'required',
+                'kecamatan' => 'required',
                 'alamat_bhabin' => 'required',
                 'hp_bhabin' => 'required',
             ]);
@@ -101,6 +103,8 @@ class BhabinkamtibmasController extends Controller
                 'nrp_bhabin' => 'required',
                 'jabatan_bhabin' => 'required',
                 'tempat_dinas_bhabin' => 'required',
+                'id_kab_kota' => 'required',
+                'kecamatan' => 'required',
                 'alamat_bhabin' => 'required',
                 'hp_bhabin' => 'required',
             ]);

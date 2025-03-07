@@ -90,6 +90,8 @@ class UserSeeder extends Seeder
             'nrp_bhabin' => '123456789',
             'jabatan_bhabin' => 'Brigpol',
             'tempat_dinas_bhabin' => 'Polresta Serang Kota',
+            'id_kab_kota' => '3673',
+            'kecamatan' => 'Serang',
             'alamat_bhabin' => 'Jl. Ahmad Yani No.64, Cipare, Kec. Serang, Kota Serang, Banten 42117',
             'hp_bhabin' => '08123456789',
             'user_id' => '4',
