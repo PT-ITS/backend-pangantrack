@@ -40,13 +40,13 @@ class PanenRepository
 
                     foreach ($panens as $panen) {
                         $kelompokTani = $panen->kelompokTani;
-                        $luasLahan = $kelompokTani ? $kelompokTani->luas_lahan : 0;
+                        $luasLahan = $kelompokTani ? (float) $kelompokTani->luas_lahan : 0;
 
                         // Sum luas lahan ditanam
                         $totalLuasLahanDitanam += $luasLahan;
 
                         // Calculate perkiraan hasil panen
-                        $perkiraanHasil = floor($luasLahan / 10) * 6;
+                        $perkiraanHasil = round(($luasLahan / 10) * 6, 2);
                         $totalPerkiraanHasil += $perkiraanHasil;
                     }
 
@@ -103,8 +103,8 @@ class PanenRepository
             $perkiraanTanggalPanen = date('Y-m-d', strtotime('+3 months', strtotime($panen->tanggal_tanam)));
 
             // Calculate perkiraan_hasil
-            $luasLahan = $kelompokTani ? $kelompokTani->luas_lahan : 0;
-            $perkiraanHasil = $dapatBantuan === 'Ya' ? floor($luasLahan / 10) * 6 : null;
+            $luasLahan = $kelompokTani ? (float) $kelompokTani->luas_lahan : 0;
+            $perkiraanHasil = $dapatBantuan === 'Ya' ? round(($luasLahan / 10) * 6, 2) : null;
 
             return [
                 'id' => '1',
@@ -156,8 +156,8 @@ class PanenRepository
                 $perkiraanTanggalPanen = date('Y-m-d', strtotime('+3 months', strtotime($panen->tanggal_tanam)));
 
                 // Calculate perkiraan_hasil
-                $luasLahan = $kelompokTani ? $kelompokTani->luas_lahan : 0;
-                $perkiraanHasil = $dapatBantuan === 'Ya' ? floor($luasLahan / 10) * 6 : null;
+                $luasLahan = $kelompokTani ? (float) $kelompokTani->luas_lahan : 0;
+                $perkiraanHasil = $dapatBantuan === 'Ya' ? round(($luasLahan / 10) * 6, 2) : null;
 
                 return [
                     'id' => $panen->id,
